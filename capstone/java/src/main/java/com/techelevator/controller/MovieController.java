@@ -1,27 +1,58 @@
 package com.techelevator.controller;
 
-import javax.validation.Valid;
 
-import org.springframework.http.HttpHeaders;
+import com.techelevator.model.Movie;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.techelevator.dao.UserDao;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.RegisterUserDTO;
-import com.techelevator.model.User;
-import com.techelevator.model.UserAlreadyExistsException;
-import com.techelevator.security.jwt.JWTFilter;
-import com.techelevator.security.jwt.TokenProvider;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@CrossOrigin
+@PreAuthorize("isAuthenticated()")
+@RequestMapping("/movies")
 public class MovieController {
+
+    private MovieDao dao;
+
+    public MovieController() {
+        this.dao = new MemoryMovieDao();
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Movie> list(@RequestParam(defaultValue = "") String title_like) {
+
+        if (!title_like.equals("")) {
+            return dao.searchByTitle(title_like);
+        }
+
+        return dao.list();
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Movie get(@PathVariable int id) {
+        return dao.get(id);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public Movie create(@Valid @RequestBody Movie movie) {
+        return dao.create(movie);
+    }
+
+    @PreAuthorize("haRole('ADMIN')")
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public Movie update(@Valid @RequestBody Movie movie, @PathVariable int id) {
+        return dao.update(movie, id);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id) {
+        dao.delete(id);
+    }
+
 }
