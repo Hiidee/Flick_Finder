@@ -58,4 +58,13 @@ CREATE TABLE movies_genre (
 	CONSTRAINT FK_movies_genre_genre FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
 );
 
+CREATE TABLE movies_favorite (
+	user_id int NOT NULL,
+	movie_id int NOT NULL,
+
+	CONSTRAINT PK_movies_favorite PRIMARY KEY (user_id, movie_id),
+	CONSTRAINT FK_movies_user_movies FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
+	CONSTRAINT FK_movies_user_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 COMMIT;
