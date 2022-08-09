@@ -18,10 +18,21 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private JdbcMovieDao dao;
+    private MovieDao dao;
 
-    public MovieController() {
-        this.dao = new MovieDao();
+    public MovieController(MovieDao movieDao) {
+        this.dao = movieDao;
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Movie> listByActor(@RequestParam(defaultValue = "") String Actor) {
+        List<Movie> movies = new ArrayList<>();
+
+        if (!Actor.equals("")) {
+            dao.getMovieByActor(Actor);
+        }
+
+        return movies;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
@@ -32,17 +43,18 @@ public class MovieController {
              dao.searchByTitle(title_like);
         }
 
-        return ;
+        return movies;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> list(@RequestParam(defaultValue = "") String genre) {
-
+    public List<Movie> listByGenre(@RequestParam(defaultValue = "") String genre) {
+    List<Movie> movies = new ArrayList<>();
         if (!genre.equals("")) {
             return dao.getMovieByGenre(genre);
         }
-        return list()
+        return movies;
     }
+
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
