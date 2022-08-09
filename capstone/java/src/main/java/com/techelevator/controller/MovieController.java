@@ -24,8 +24,8 @@ public class MovieController {
         this.dao = movieDao;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> listByActor(@RequestParam(defaultValue = "") String Actor) {
+    @RequestMapping(path = "/actor/{Actor}", method = RequestMethod.GET)
+    public List<Movie> listByActor(@PathVariable String Actor) {
         List<Movie> movies = new ArrayList<>();
 
         if (!Actor.equals("")) {
@@ -35,8 +35,8 @@ public class MovieController {
         return movies;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> getByTitle(@RequestParam(defaultValue = "") String title_like) {
+    @RequestMapping(path = "/title/{title_like}", method = RequestMethod.GET)
+    public List<Movie> getByTitle(@PathVariable String title_like) {
     List<Movie> movies = new ArrayList<>();
 
         if (!title_like.equals("")) {
@@ -46,8 +46,8 @@ public class MovieController {
         return movies;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> listByGenre(@RequestParam(defaultValue = "") String genre) {
+    @RequestMapping(path = "/genre/{genre}", method = RequestMethod.GET)
+    public List<Movie> listByGenre(@PathVariable String genre) {
     List<Movie> movies = new ArrayList<>();
         if (!genre.equals("")) {
             return dao.getMovieByGenre(genre);
