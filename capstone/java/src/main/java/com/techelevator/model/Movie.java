@@ -2,16 +2,20 @@ package com.techelevator.model;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 public class Movie {
 
     private int id;
     private String title;
     private String overview;
+    private List<String> genres;
     private String poster;
     private int directorId;
+    private String director;
     private Time runtime;
     private Date datePremiered;
+    private List<Person> actors;
 
     public Movie () {
     }
@@ -78,7 +82,23 @@ public class Movie {
         return datePremiered;
     }
 
+    public String getDirector() {
+        return director;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
     public void setDatePremiered(Date datePremiered) {
         this.datePremiered = datePremiered;
+    }
+
+    public List<Person> getActors() {
+        return actors;
     }
 }
