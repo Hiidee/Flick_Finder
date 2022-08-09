@@ -6,7 +6,6 @@ CREATE TABLE users (
 	user_id serial,
 	username varchar(25) NOT NULL,
 	password text NOT NULL,
-	salt text NOT NULL,
 	role varchar(10) NOT NULL,
 
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
