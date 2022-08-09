@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 
+import com.techelevator.dao.JdbcMovieDao;
 import com.techelevator.dao.MovieDao;
 import com.techelevator.model.Movie;
 import org.springframework.http.HttpStatus;
@@ -12,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 @RequestMapping("/movies")
 public class MovieController {
 
-    private MovieDao dao;
+    private JdbcMovieDao dao;
 
     public MovieController(MovieDao movieDao) {
         this.dao = movieDao;
@@ -33,11 +35,20 @@ public class MovieController {
         return movies;
     }
 
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Movie> list(@RequestParam(defaultValue = "") String genre) {
+
+        if (!genre.equals("")) {
+            return dao.getMovieByGenre(genre);
+        }
+        return list()
+    }
+
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
 //        return dao.get(id);
 //    }
-
+//
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @ResponseStatus(HttpStatus.CREATED)
 //    @RequestMapping(path = "", method = RequestMethod.POST)
@@ -51,11 +62,11 @@ public class MovieController {
 //        return dao.update(movie, id);
 //    }
 
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-//    public void delete(@PathVariable int id) {
-//        dao.delete(id);
-//    }
+    @PreAuthorize("hasRole('ADMIN')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id) {
+        dao.delete(id);
+    }
 
 }
