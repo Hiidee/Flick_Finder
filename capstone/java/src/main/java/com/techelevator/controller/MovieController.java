@@ -19,7 +19,7 @@ public class MovieController {
     private JdbcMovieDao dao;
 
     public MovieController() {
-        this.dao = new MemoryMovieDao();
+        this.dao = new JdbcMovieDao()
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
@@ -38,7 +38,7 @@ public class MovieController {
         if (!genre.equals("")) {
             return dao.getMovieByGenre(genre);
         }
-        return list()
+        return list();
     }
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
