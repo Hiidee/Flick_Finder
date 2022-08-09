@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 @RequestMapping("/movies")
 public class MovieController {
