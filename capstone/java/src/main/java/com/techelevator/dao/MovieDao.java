@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MovieDao {
 
-    public Movie getRandomMovie();
+    public Movie getRandomMovie(int limit);
 
     public List<Movie> getMovieByGenre(String genre);
 

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 @RequestMapping("/movies")
 public class MovieController {
 
@@ -40,7 +40,7 @@ public class MovieController {
     List<Movie> movies = new ArrayList<>();
 
         if (!title_like.equals("")) {
-             dao.searchByTitle(title_like);
+             movies = dao.searchByTitle(title_like);
         }
 
         return movies;
@@ -55,8 +55,8 @@ public class MovieController {
         return movies;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> ListByDirector(@RequestParam(defaultValue = "") String director) {
+    @RequestMapping(path = "/director/{director}", method = RequestMethod.GET)
+    public List<Movie> ListByDirector(@PathVariable String director) {
         List<Movie> movies = new ArrayList<>();
         if (!director.equals("")) {
             return dao.getMovieByDirector(director);
