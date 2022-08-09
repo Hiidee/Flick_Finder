@@ -70,7 +70,7 @@ public List<Movie> getMovieByGenre(String genre){
                 "WHERE genre_name ILIKE ?;";
 
         try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, genre);
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "'%"+genre+"%'");
             while(rowSet.next()){
                 movies.add(mapRowToMovie(rowSet));
             }
@@ -84,13 +84,13 @@ public List<Movie> getMovieByDirector(String director){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT title, date_released, poster, name as director FROM movie \n" +
                 "JOIN movie_genre using (movie_id)\n" +
                 "JOIN genre using (genre_id)\n" +
                 "WHERE director ILIKE ?;";
 
         try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, director);
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "'%"+director+"%'");
             while(rowSet.next()){
                 movies.add(mapRowToMovie(rowSet));
             }
@@ -116,6 +116,24 @@ public Movie setMovieGenre(Movie movie){
             e.printStackTrace();
         }
         return movie;
+}
+
+public List<Movie> searchByTitle(String iLike){
+    List<Movie> movies = new ArrayList<>();
+
+    String sql = "SELECT title, date_released, poster, name as director FROM movie " +
+                "JOIN person ON director_id = person_id "+
+                "WHERE title ILIKE ?;";
+
+        try{
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "'%"+iLike+"%'");
+            while(rowSet.next()){
+                movies.add(mapRowToMovie(rowSet));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return movies;
 }
 
 private Movie mapRowToMovie(SqlRowSet rowSet){

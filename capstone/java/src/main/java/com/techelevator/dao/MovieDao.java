@@ -13,4 +13,6 @@ public interface MovieDao {
     public List<Movie> getMovieByDirector(String director);
 
     public Movie setMovieGenre(Movie movie);
+
+    public List<Movie> searchByTitle(String iLike);
 }

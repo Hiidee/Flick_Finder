@@ -36,7 +36,7 @@ public class MovieController {
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> list(@RequestParam(defaultValue = "") String title_like) {
+    public List<Movie> getByTitle(@RequestParam(defaultValue = "") String title_like) {
     List<Movie> movies = new ArrayList<>();
 
         if (!title_like.equals("")) {
@@ -74,11 +74,11 @@ public class MovieController {
 //        return dao.update(movie, id);
 //    }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
-        dao.delete(id);
-    }
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+//    public void delete(@PathVariable int id) {
+//        dao.delete(id);
+//    }
 
 }
