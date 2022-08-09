@@ -86,9 +86,9 @@ public List<Movie> getMovieByDirector(String director){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT title, date_released, poster, name as director FROM movie \n" +
+        String sql = "SELECT title, date_released, poster, name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n"+
-                "WHERE director ILIKE ?;";
+                "WHERE name ILIKE ?;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+director+"%");
