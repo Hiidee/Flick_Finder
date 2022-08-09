@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.Movie;
 import com.techelevator.model.UserNotFoundException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,13 +25,14 @@ public class JdbcMovieDao implements MovieDao{
     }
 
 public Movie getRandomMovie(){
-        String sql = "SELECT title, date_released, poster_path, name as director FROM movie "+
+        String sql = "SELECT title, date_released, poster, name as director FROM movie "+
                 "JOIN person_id on director_id = person_id" +
                 "ORDER BY rand() LIMIT 1;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
-            return mapRowToMovie(rowSet.next());
+            if(rowSet.next())
+            return mapRowToMovie(rowSet);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -41,7 +43,7 @@ public List<Movie> getMovieByGenre(String genre){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT title, date_released, poster_path, name as director FROM movie\n" +
+        String sql = "SELECT title, date_released, poster, name as director FROM movie\n" +
                 "JOIN movie_genre using (movie_id)\n" +
                 "JOIN genre using (genre_id)\n" +
                 "WHERE genre_name ILIKE ?;";
@@ -61,7 +63,7 @@ public List<Movie> getMovieByDirector(String director){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT title, date_released, poster_path, name as director FROM movie/n" +
+        String sql = "SELECT title, date_released, poster, name as director FROM movie/n" +
                 "JOIN movie_genre using (movie_id)\n" +
                 "JOIN genre using (genre_id)\n" +
                 "WHERE director ILIKE ?;";
@@ -95,19 +97,19 @@ public Movie setMovieGenre(Movie movie){
         return movie;
 }
 
-public Movie mapRowToMovie(SqlRowSet rowSet){
+private Movie mapRowToMovie(SqlRowSet rowSet){
         Movie movie = new Movie();
-        
+
         movie.setTitle(rowSet.getString("title"));
         movie.setDatePremiered(rowSet.getDate("date_released"));
         movie.setDirector(rowSet.getString("director"));
-        movie.setPosterPath(rowSet.getString("poster_path"));
+        movie.setPoster(rowSet.getString("poster"));
 
         return movie;
 }
 
-public Movie mapRowToGenre(Movie movie, SqlRowSet rowSet){
-        movie.getGenres.add(rowSet.getString("genre_name"));
+private Movie mapRowToGenre(Movie movie, SqlRowSet rowSet){
+        movie.getGenres().add(rowSet.getString("genre_name"));
 
         return movie;
 }
