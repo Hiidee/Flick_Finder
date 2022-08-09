@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,17 +20,18 @@ public class MovieController {
     private JdbcMovieDao dao;
 
     public MovieController() {
-        this.dao = new MemoryMovieDao();
+        this.dao = new MovieDao();
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<Movie> list(@RequestParam(defaultValue = "") String title_like) {
+    List<Movie> movies = new ArrayList<>();
 
         if (!title_like.equals("")) {
-            return dao.searchByTitle(title_like);
+             dao.searchByTitle(title_like);
         }
 
-        return dao.list();
+        return ;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
