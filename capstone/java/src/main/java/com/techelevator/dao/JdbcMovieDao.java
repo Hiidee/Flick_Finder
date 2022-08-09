@@ -157,5 +157,7 @@ private Movie mapRowToActor(Movie movie, Person person, SqlRowSet rowSet){
         person.setName(rowSet.getString("actor"));
 
         movie.getActors().add(person);
+
+        return movie;
 }
 }
