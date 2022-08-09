@@ -55,6 +55,15 @@ public class MovieController {
         return movies;
     }
 
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Movie> ListByDirector(@RequestParam(defaultValue = "") String director) {
+        List<Movie> movies = new ArrayList<>();
+        if (!director.equals("")) {
+            return dao.getMovieByDirector(director);
+        }
+        return movies;
+    }
+
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
