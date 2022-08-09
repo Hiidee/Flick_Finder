@@ -25,34 +25,35 @@ public class MovieController {
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> list(@RequestParam(defaultValue = "") String title_like) {
+    public List<Movie> listByActor(@RequestParam(defaultValue = "") String Actor) {
+        List<Movie> movies = new ArrayList<>();
+
+        if (!Actor.equals("")) {
+            dao.getMovieByActor(Actor);
+        }
+
+        return movies;
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Movie> getByTitle(@RequestParam(defaultValue = "") String title_like) {
     List<Movie> movies = new ArrayList<>();
 
         if (!title_like.equals("")) {
              dao.searchByTitle(title_like);
         }
 
-        return ;
+        return movies;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> list(@RequestParam(defaultValue = "") String genre) {
-
+    public List<Movie> listByGenre(@RequestParam(defaultValue = "") String genre) {
+    List<Movie> movies = new ArrayList<>();
         if (!genre.equals("")) {
             return dao.getMovieByGenre(genre);
         }
-        return list();
+        return movies;
     }
-
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> list(@RequestParam(defaultValue = "") String director) {
-
-        if (!director.equals("")) {
-            return dao.getMovieByDirector(director);
-        }
-        return list();
-    }
-
 
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -73,11 +74,11 @@ public class MovieController {
 //        return dao.update(movie, id);
 //    }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
-        dao.delete(id);
-    }
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+//    public void delete(@PathVariable int id) {
+//        dao.delete(id);
+//    }
 
 }

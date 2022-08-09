@@ -15,6 +15,7 @@ public class Movie {
     private String director;
     private Time runtime;
     private Date datePremiered;
+    private List<Person> actors;
 
     public Movie () {
     }
@@ -95,5 +96,9 @@ public class Movie {
 
     public void setDatePremiered(Date datePremiered) {
         this.datePremiered = datePremiered;
+    }
+
+    public List<Person> getActors() {
+        return actors;
     }
 }
