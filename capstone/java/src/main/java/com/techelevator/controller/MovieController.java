@@ -18,14 +18,14 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private JdbcMovieDao dao;
+    private MovieDao dao;
 
     public MovieController(MovieDao movieDao) {
         this.dao = movieDao;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Movie> list(@RequestParam(defaultValue = "") String title_like) {
+    public List<Movie> getByTitle(@RequestParam(defaultValue = "") String title_like) {
     List<Movie> movies = new ArrayList<>();
 
         if (!title_like.equals("")) {
@@ -62,11 +62,11 @@ public class MovieController {
 //        return dao.update(movie, id);
 //    }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) {
-        dao.delete(id);
-    }
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+//    public void delete(@PathVariable int id) {
+//        dao.delete(id);
+//    }
 
 }
