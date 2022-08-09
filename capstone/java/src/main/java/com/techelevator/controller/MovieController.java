@@ -18,8 +18,8 @@ public class MovieController {
 
     private MovieDao dao;
 
-    public MovieController() {
-        this.dao = new MovieDao();
+    public MovieController(MovieDao movieDao) {
+        this.dao = movieDao;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
@@ -30,7 +30,7 @@ public class MovieController {
              dao.searchByTitle(title_like);
         }
 
-        return ;
+        return movies;
     }
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
