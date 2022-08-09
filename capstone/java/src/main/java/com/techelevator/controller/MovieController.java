@@ -18,10 +18,10 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private JdbcMovieDao dao;
+    private MovieDao dao;
 
-    public MovieController() {
-        this.dao = new MovieDao();
+    public MovieController(MovieDao movieDao) {
+        this.dao = movieDao;
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
@@ -41,8 +41,19 @@ public class MovieController {
         if (!genre.equals("")) {
             return dao.getMovieByGenre(genre);
         }
-        return list()
+        return list();
     }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Movie> list(@RequestParam(defaultValue = "") String director) {
+
+        if (!director.equals("")) {
+            return dao.getMovieByDirector(director);
+        }
+        return list();
+    }
+
+
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
