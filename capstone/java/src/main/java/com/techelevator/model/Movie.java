@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,13 +10,13 @@ public class Movie {
     private int id;
     private String title;
     private String overview;
-    private List<String> genres;
+    private List<String> genres = new ArrayList<>();
     private String poster;
     private int directorId;
     private String director;
     private Time runtime;
     private Date datePremiered;
-    private List<Person> actors;
+    private List<Person> actors = new ArrayList<>();
 
     public Movie () {
     }

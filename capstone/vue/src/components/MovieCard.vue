@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-4by3">
         <img
-          src="https://bulma.io/images/placeholders/1280x960.png"
+          v-bind:src="movie.poster"
           alt="Placeholder image"
         />
       </figure>
@@ -36,13 +36,106 @@
 </template>
 
 <script>
-// import MovieService from "@/services/MovieService.js";
+import MovieService from "@/services/MovieService.js";
 
-// export default {
-//   data() {
-//     return {
+export default {
+  data() {
+    return {
+      movie: 
+        {
+          id: 0,
+          title: '',
+          overview: '',
+          genre: [],
+          poster: '',
+          directorID: 0,
+          director: '',
+          runtime: 0,
+          datePremiered: '',
+          actors: []
+        }
+      
 
-//     }
-//   },
-// };
+      
+
+    }
+  },
+
+  methods: {
+    getByActor() {
+      MovieService.listByActor(this.$route.params.personID).then((response) => {
+        this.movie.id = response.data.id;
+        this.movie.title = response.data.title;
+        this.movie.overview = response.data.overview;
+        this.movie.genre = response.data.genre;
+        this.movie.poster = response.data.poster;
+        this.movie.directorID = response.data.directorID;
+        this.movie.director = response.data.director;
+        this.movie.runtime = response.data.runtime;
+        this.movie.datePremiered = response.data.datePremiered;
+        this.movie.actors = response.data.actors;
+      })
+    },
+
+    getByGenre() {
+      MovieService.listByGenre(this.$route.params.genreName).then((response) => {
+        this.movie.id = response.data.id;
+        this.movie.title = response.data.title;
+        this.movie.overview = response.data.overview;
+        this.movie.genre = response.data.genre;
+        this.movie.poster = response.data.poster;
+        this.movie.directorID = response.data.directorID;
+        this.movie.director = response.data.director;
+        this.movie.runtime = response.data.runtime;
+        this.movie.datePremiered = response.data.datePremiered;
+        this.movie.actors = response.data.actors;
+      })
+    },
+
+    getByDirector() {
+      MovieService.listByDirector(this.$route.params.directorName).then((response) => {
+        this.movie.id = response.data.id;
+        this.movie.title = response.data.title;
+        this.movie.overview = response.data.overview;
+        this.movie.genre = response.data.genre;
+        this.movie.poster = response.data.poster;
+        this.movie.directorID = response.data.directorID;
+        this.movie.director = response.data.director;
+        this.movie.runtime = response.data.runtime;
+        this.movie.datePremiered = response.data.datePremiered;
+        this.movie.actors = response.data.actors;
+      })
+    },
+
+    getByTitle() {
+      MovieService.listByTitle(this.$route.params.title).then((response) => {
+        this.movie.id = response.data.id;
+        this.movie.title = response.data.title;
+        this.movie.overview = response.data.overview;
+        this.movie.genre = response.data.genre;
+        this.movie.poster = response.data.poster;
+        this.movie.directorID = response.data.directorID;
+        this.movie.director = response.data.director;
+        this.movie.runtime = response.data.runtime;
+        this.movie.datePremiered = response.data.datePremiered;
+        this.movie.actors = response.data.actors;
+      })
+    },
+
+    getRandom() {
+      MovieService.listRandom().then((response) => {
+        this.movie.id = response.data.id;
+        this.movie.title = response.data.title;
+        this.movie.overview = response.data.overview;
+        this.movie.genre = response.data.genre;
+        this.movie.poster = response.data.poster;
+        this.movie.directorID = response.data.directorID;
+        this.movie.director = response.data.director;
+        this.movie.runtime = response.data.runtime;
+        this.movie.datePremiered = response.data.datePremiered;
+        this.movie.actors = response.data.actors;
+      })
+    },
+  }
+};
 </script>
