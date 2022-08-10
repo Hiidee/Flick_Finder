@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import FlickFinder from '@/views/FlickFinder.vue'
+import Browse from '@/views/Browse.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,14 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/movies',
+      name: 'movies',
+      component: Browse,
       meta: {
         requiresAuth: false
       }

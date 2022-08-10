@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-4by3">
         <img
-          src="https://bulma.io/images/placeholders/1280x960.png"
+          v-bind:src="movie.poster"
           alt="Placeholder image"
         />
       </figure>
@@ -41,7 +41,7 @@ import MovieService from "@/services/MovieService.js";
 export default {
   data() {
     return {
-      movie: [
+      movie: 
         {
           id: 0,
           title: '',
@@ -54,7 +54,7 @@ export default {
           datePremiered: '',
           actors: []
         }
-      ]
+      
 
       
 
