@@ -64,6 +64,18 @@ public class MovieController {
         return movies;
     }
 
+    @RequestMapping(path = "/random", method = RequestMethod.GET)
+    public List<Movie> ListRandomMovies() {
+        List<Movie> movies = new ArrayList<>();
+        return movies;
+    }
+
+    @RequestMapping(path = "/recommendations{userId}", method = RequestMethod.GET)
+    public List<Movie> ListRecommendedMovies(@PathVariable int id) {
+        List<Movie> movies = new ArrayList<>();
+        return movies;
+    }
+
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {

@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 import com.techelevator.model.User;
 
 @Component
-public class JdbcMovieDao implements MovieDao{
+public class JdbcMovieDao implements MovieDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcMovieDao (JdbcTemplate jdbcTemplate){
+    public JdbcMovieDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -142,7 +142,7 @@ public Movie getRandomMovie(int limit){
                 "JOIN person_id on director_id = person_id\n" +
                 "ORDER BY rand() LIMIT ?;";
 
-        try{
+        try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, limit);
             while (rowSet.next()) {
                 Movie movie = mapRowToMovie(rowSet);
@@ -155,9 +155,9 @@ public Movie getRandomMovie(int limit){
             e.printStackTrace();
         }
         return null;
-}
+    }
 
-public List<Movie> getMovieByGenre(String genre){
+    public List<Movie> getMovieByGenre(String genre) {
 
         List<Movie> movies = new ArrayList<>();
 
@@ -176,13 +176,13 @@ public List<Movie> getMovieByGenre(String genre){
 
                 movies.add(movie);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return movies;
-}
+    }
 
-public List<Movie> getMovieByDirector(String director){
+    public List<Movie> getMovieByDirector(String director) {
 
         List<Movie> movies = new ArrayList<>();
 
@@ -199,11 +199,11 @@ public List<Movie> getMovieByDirector(String director){
 
                 movies.add(movie);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return movies;
-}
+    }
 
     public List<Movie> searchByTitle(String iLike){
         List<Movie> movies = new ArrayList<>();
@@ -234,16 +234,16 @@ public Movie setMovieGenre(Movie movie){
                 "join genre using (genre_id)\n" +
                 "where title = ?;";
 
-        try{
+        try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, movie.getTitle());
-            while(rowSet.next()){
+            while (rowSet.next()) {
                 mapRowToGenre(movie, rowSet);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return movie;
-}
+    }
 
 public Movie setMovieActors(Movie movie){
 
@@ -266,7 +266,7 @@ public Movie setMovieActors(Movie movie){
 
 /////////////////////OBJECT HELPERS////////////////////
 
-private Movie mapRowToMovie(SqlRowSet rowSet){
+    private Movie mapRowToMovie(SqlRowSet rowSet) {
         Movie movie = new Movie();
 
         movie.setId(rowSet.getInt("movie_id"));
@@ -276,13 +276,13 @@ private Movie mapRowToMovie(SqlRowSet rowSet){
         movie.setPoster(rowSet.getString("poster"));
 
         return movie;
-}
+    }
 
-private Movie mapRowToGenre(Movie movie, SqlRowSet rowSet){
+    private Movie mapRowToGenre(Movie movie, SqlRowSet rowSet) {
         movie.getGenres().add(rowSet.getString("genre_name"));
 
         return movie;
-}
+    }
 
 private Movie mapRowToActor(Movie movie, SqlRowSet rowSet){
         Person person = new Person();
@@ -291,5 +291,14 @@ private Movie mapRowToActor(Movie movie, SqlRowSet rowSet){
         movie.getActors().add(person);
 
         return movie;
-}
+    }
+
+    public boolean delete(int id) {
+        try {
+            jdbcTemplate.update("DELETE FROM user WHERE user_id = ?", id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
