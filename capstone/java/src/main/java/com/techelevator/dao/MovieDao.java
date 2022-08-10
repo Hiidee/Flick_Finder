@@ -17,4 +17,6 @@ public interface MovieDao {
     public List<Movie> searchByTitle(String iLike);
 
     public List<Movie> getMovieByActor(String actor);
+
+    public boolean delete (int id);
 }
