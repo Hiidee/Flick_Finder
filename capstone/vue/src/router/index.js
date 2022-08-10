@@ -68,7 +68,7 @@ const router = new Router({
       name: 'flickfinder',
       component: FlickFinder,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]
