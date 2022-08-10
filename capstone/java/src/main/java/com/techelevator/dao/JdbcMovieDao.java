@@ -1,9 +1,6 @@
 package com.techelevator.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import com.techelevator.model.Movie;
 import com.techelevator.model.Person;
@@ -32,9 +29,59 @@ public class JdbcMovieDao implements MovieDao{
         List<Movie> recommendations = new ArrayList<>();
         postSwipes(userId,swipes);
 
-        HashMap preferences = new HashMap();
 
+        //Adds individual preferences to list format
+        List<String> directors = new ArrayList<>();
+        List<String> genres = new ArrayList<>();
+        List<String> actors = new ArrayList<>();
+        for(int i = 0; i<swipes.size() ; i++){
+            directors.add(swipes.get(i).getDirector());
+        }
 
+        for(int i = 0; i<swipes.size(); i++){
+            Movie movie = swipes.get(i);
+            for(int x = 0; i<movie.getActors().size(); x++) {
+                actors.add(movie.getActors().get(x).getName());
+            }
+            for(int y = 0; i<movie.getGenres().size() ; y++){
+                genres.add(movie.getGenres().get(y));
+            }
+            directors.add(movie.getDirector());
+        }
+
+        //Map unique preferences to number of occurrences
+        HashMap<String,Integer> directorOccurrences = new HashMap<>();
+        HashMap<String,Integer> genreOccurrences = new HashMap<>();
+        HashMap<String,Integer> actorOccurrences = new HashMap<>();
+
+        for (String director : directors) {
+            if (directorOccurrences.containsKey(director)) {
+                directorOccurrences.put(director,directorOccurrences.get(director)+1);
+            }else{
+                directorOccurrences.put(director,1);
+            }
+        }
+
+        for (String genre: genres){
+            if(genreOccurrences.containsKey(genre)){
+                genreOccurrences.put(genre,genreOccurrences.get(genre)+1);
+            }else{
+                genreOccurrences.put(genre,1);
+            }
+        }
+
+        for (String actor: actors){
+            if(actorOccurrences.containsKey(actor)){
+                actorOccurrences.put(actor,genreOccurrences.get(actor)+1);
+            }else{
+                actorOccurrences.put(actor,1);
+            }
+        }
+
+        //Maps used for matching movies and determining ratios of each
+        for (Map.Entry<String, Integer> director: directorOccurrences.entrySet()){
+
+        }
 
         return recommendations;
     }
@@ -59,8 +106,6 @@ public class JdbcMovieDao implements MovieDao{
         }
     }
 
-    public List<Movie> 
-
 
     ///////////ALGORITHM ENDS HERE/////////////
 
@@ -79,8 +124,11 @@ public class JdbcMovieDao implements MovieDao{
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+actor+"%");
             while(rowSet.next()){
-                movies.add(mapRowToMovie(rowSet));
-            }
+                Movie movie = mapRowToMovie(rowSet);
+                setMovieActors(movie);
+                setMovieGenre(movie);
+
+                movies.add(movie);            }
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -88,14 +136,21 @@ public class JdbcMovieDao implements MovieDao{
     }
 
 public Movie getRandomMovie(int limit){
+        List<Movie> movies = new ArrayList<>();
+
         String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie "+
                 "JOIN person_id on director_id = person_id\n" +
                 "ORDER BY rand() LIMIT ?;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, limit);
-            if(rowSet.next())
-            return mapRowToMovie(rowSet);
+            while (rowSet.next()) {
+                Movie movie = mapRowToMovie(rowSet);
+                setMovieActors(movie);
+                setMovieGenre(movie);
+
+                movies.add(movie);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -115,7 +170,11 @@ public List<Movie> getMovieByGenre(String genre){
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+genre+"%"   );
             while(rowSet.next()){
-                movies.add(mapRowToMovie(rowSet));
+                Movie movie = mapRowToMovie(rowSet);
+                setMovieActors(movie);
+                setMovieGenre(movie);
+
+                movies.add(movie);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -134,7 +193,11 @@ public List<Movie> getMovieByDirector(String director){
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+director+"%");
             while(rowSet.next()){
-                movies.add(mapRowToMovie(rowSet));
+                Movie movie = mapRowToMovie(rowSet);
+                setMovieActors(movie);
+                setMovieGenre(movie);
+
+                movies.add(movie);
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -152,7 +215,11 @@ public List<Movie> getMovieByDirector(String director){
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+iLike+"%");
             while(rowSet.next()){
-                movies.add(mapRowToMovie(rowSet));
+                Movie movie = mapRowToMovie(rowSet);
+                setMovieActors(movie);
+                setMovieGenre(movie);
+
+                movies.add(movie);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -173,6 +240,24 @@ public Movie setMovieGenre(Movie movie){
                 mapRowToGenre(movie, rowSet);
             }
         }catch(Exception e){
+            e.printStackTrace();
+        }
+        return movie;
+}
+
+public Movie setMovieActors(Movie movie){
+
+        String sql = "SELECT name FROM movie\n"+
+                "JOIN movie_person USING (movie_id)\n"+
+                "JOIN person USING (person_id)\n"+
+                "WHERE title = ?;";
+
+        try{
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, movie.getTitle());
+            while(rowSet.next()){
+                mapRowToActor(movie, rowSet);
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
         return movie;
@@ -199,9 +284,10 @@ private Movie mapRowToGenre(Movie movie, SqlRowSet rowSet){
         return movie;
 }
 
-private Movie mapRowToActor(Movie movie, Person person, SqlRowSet rowSet){
-        person.setName(rowSet.getString("actor"));
+private Movie mapRowToActor(Movie movie, SqlRowSet rowSet){
+        Person person = new Person();
 
+        person.setName(rowSet.getString("actor"));
         movie.getActors().add(person);
 
         return movie;
