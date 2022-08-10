@@ -27,7 +27,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -60,7 +60,7 @@ const router = new Router({
       component: FlickFinder,
       meta: {
         requiresAuth: true
-      }
+      },
     }
   ]
 })
