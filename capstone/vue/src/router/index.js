@@ -32,8 +32,8 @@ const router = new Router({
       }
     },
     {
-      path: '/movies',
-      name: 'movies',
+      path: '/browse',
+      name: 'browse',
       component: Browse,
       meta: {
         requiresAuth: false
@@ -64,8 +64,8 @@ const router = new Router({
       }
     },
     {
-      path: "/flickfinder",
-      name: 'flickfinder',
+      path: "/flickFinder",
+      name: 'flickFinder',
       component: FlickFinder,
       meta: {
         requiresAuth: true

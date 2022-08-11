@@ -66,14 +66,20 @@ public class MovieController {
 
     @RequestMapping(path = "/random", method = RequestMethod.GET)
     public List<Movie> ListRandomMovies() {
-        List<Movie> movies = new ArrayList<>();
+        List<Movie> movies = dao.getRandomMovie(100);
         return movies;
     }
 
-    @RequestMapping(path = "/recommendations{userId}", method = RequestMethod.GET)
-    public List<Movie> ListRecommendedMovies(@PathVariable int id) {
-        List<Movie> movies = new ArrayList<>();
+
+    @RequestMapping(path = "/recommendations/{userId}/", method = RequestMethod.POST)
+    public List<Movie> ListRecommendedMovies(@RequestBody List<Movie> swipes,@PathVariable int id) {
+        List<Movie> movies = dao.getNewRecommendations(id, swipes);
         return movies;
+    }
+
+    @RequestMapping(path = "/favorites/save/{userId}/", method = RequestMethod.POST)
+    public boolean addFavoriteMovies(@RequestBody List<Movie> favorited, @PathVariable int id){
+        return false;//NOT IMPLEMENTED
     }
 
 

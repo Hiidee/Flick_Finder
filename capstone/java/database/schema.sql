@@ -1,6 +1,14 @@
 BEGIN TRANSACTION ;
 
-DROP TABLE IF EXISTS history_swipes, movie_genre, movie_person, movie_favorite, users, person, movie, genre;
+DROP TABLE IF EXISTS history_swipes, movie_genre, movie_actor, movie_favorite, users, person, movie, genre, collection;
+
+CREATE TABLE collection (
+	collection_id serial,
+	collection_name text,
+
+	CONSTRAINT PK_collection PRIMARY KEY (collection_id)
+
+);
 
 CREATE TABLE users (
 	user_id serial,
@@ -13,8 +21,12 @@ CREATE TABLE users (
 
 CREATE TABLE person (
 	person_id serial,
-	name varchar(50) NOT NULL,
-	birthday date NOT NULL,
+	person_name varchar(100) NOT NULL,
+	birthday date,
+	deathday date,
+	biography text,
+	profile_path text,
+	home_page text,
 
 	CONSTRAINT PK_person PRIMARY KEY (person_id)
 );
@@ -28,24 +40,29 @@ CREATE TABLE genre (
 
 CREATE TABLE movie (
 	movie_id serial,
-	title varchar(50),
+	title text,
 	overview text,
-	poster text,
+	tagline text,
+	poster_path text,
+	home_page text,
+	release_date date,
+	length_minutes int,
 	director_id int,
-	runtime time,
-	date_released date,
+	collection_id int,
+
 
 	CONSTRAINT PK_movie PRIMARY KEY (movie_id),
-	CONSTRAINT FK_movie_person FOREIGN KEY (director_id) REFERENCES person(person_id)
+	CONSTRAINT FK_movie_person FOREIGN KEY (director_id) REFERENCES person(person_id),
+	CONSTRAINT FK_movie_collection FOREIGN KEY (collection_id) REFERENCES collection(collection_id)
 );
 
-CREATE TABLE movie_person (
+CREATE TABLE movie_actor (
 	movie_id int NOT NULL,
-	person_id int NOT NULL,
+	actor_id int NOT NULL,
 
-	CONSTRAINT PK_movie_person PRIMARY KEY (movie_id, person_id),
+	CONSTRAINT PK_movie_person PRIMARY KEY (movie_id, actor_id),
 	CONSTRAINT FK_movie_person_movie FOREIGN KEY (movie_id) REFERENCES movie(movie_id),
-	CONSTRAINT FK_movie_person_person FOREIGN KEY (person_id) REFERENCES person(person_id)
+	CONSTRAINT FK_movie_person_person FOREIGN KEY (actor_id) REFERENCES person(person_id)
 );
 
 CREATE TABLE movie_genre (

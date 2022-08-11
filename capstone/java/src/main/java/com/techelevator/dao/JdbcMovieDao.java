@@ -1,18 +1,13 @@
 package com.techelevator.dao;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.techelevator.model.Movie;
 import com.techelevator.model.Person;
-import com.techelevator.model.UserNotFoundException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import com.techelevator.model.User;
 
 @Component
 public class JdbcMovieDao implements MovieDao {
@@ -27,6 +22,9 @@ public class JdbcMovieDao implements MovieDao {
 
     public List<Movie> getNewRecommendations(int userId, List<Movie> swipes){
         List<Movie> recommendations = new ArrayList<>();
+        //Delete current cache
+        delete(userId);
+        //Add new cache
         postSwipes(userId,swipes);
 
 
@@ -79,12 +77,55 @@ public class JdbcMovieDao implements MovieDao {
         }
 
         //Maps used for matching movies and determining ratios of each
-        for (Map.Entry<String, Integer> director: directorOccurrences.entrySet()){
+        double preferenceSize = directors.size()+genres.size()+actors.size();
 
+        for (Map.Entry<String, Integer> director: directorOccurrences.entrySet()){
+            List<Movie> preferenceReturn = new ArrayList<>();
+            preferenceReturn = getMovieByDirector(director.getKey());
+            double numberFromPreference = (director.getValue()/preferenceSize)*75;
+            for(int i=0; i<numberFromPreference; i++){
+                int randomNumInRange = ThreadLocalRandom.current().nextInt(0,preferenceReturn.size()-1);
+                recommendations.add(preferenceReturn.get(randomNumInRange));
+                preferenceReturn.remove(randomNumInRange);
+            }
         }
+
+        for (Map.Entry<String, Integer> genre: genreOccurrences.entrySet()){
+            List<Movie> preferenceReturn = new ArrayList<>();
+            preferenceReturn = getMovieByDirector(genre.getKey());
+            double numberFromPreference = (genre.getValue()/preferenceSize)*75;
+            for(int i=0; i<numberFromPreference; i++){
+                int randomNumInRange = ThreadLocalRandom.current().nextInt(0,preferenceReturn.size()-1);
+                recommendations.add(preferenceReturn.get(randomNumInRange));
+                preferenceReturn.remove(randomNumInRange);
+            }
+        }
+
+        for (Map.Entry<String, Integer> actor: actorOccurrences.entrySet()){
+            List<Movie> preferenceReturn = new ArrayList<>();
+            preferenceReturn = getMovieByDirector(actor.getKey());
+            double numberFromPreference = (actor.getValue()/preferenceSize)*75;
+            for(int i=0; i<numberFromPreference; i++){
+                int randomNumInRange = ThreadLocalRandom.current().nextInt(0,preferenceReturn.size()-1);
+                recommendations.add(preferenceReturn.get(randomNumInRange));
+                preferenceReturn.remove(randomNumInRange);
+            }
+        }
+
+        return getRandomToFillRemaining(recommendations);
+    }
+
+    public List<Movie> getRandomToFillRemaining(List<Movie> recommendations){
+        //Fill in recommendations with remaining random movies
+        int remainingFrom100=100-recommendations.size();
+        List<Movie> fillerRandom = new ArrayList<>();
+
+        fillerRandom = getRandomMovie(remainingFrom100);
+        recommendations.addAll(fillerRandom);
 
         return recommendations;
     }
+
 
     public void postSwipes(int userId, List<Movie> swipes){
         int[] movieId = new int[10];
@@ -115,11 +156,10 @@ public class JdbcMovieDao implements MovieDao {
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT  movie_id, title, date_released, poster, name as actor FROM movie\n" +
-                "JOIN person on director_id=person_id\n"+
-                "JOIN movie_genre using (movie_id)\n" +
-                "JOIN genre using (genre_id)\n" +
-                "WHERE genre_name ILIKE ?;";
+        String sql = "SELECT  movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
+                "JOIN movie_actor USING (movie_id)\n" +
+                "JOIN person on actor_id=person_id\n" +
+                "WHERE person_name ILIKE ?;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+actor+"%");
@@ -135,12 +175,12 @@ public class JdbcMovieDao implements MovieDao {
         return movies;
     }
 
-public Movie getRandomMovie(int limit){
+public List<Movie> getRandomMovie(int limit){
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie "+
-                "JOIN person_id on director_id = person_id\n" +
-                "ORDER BY rand() LIMIT ?;";
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie "+
+                "JOIN person on director_id = person_id\n" +
+                "ORDER BY RANDOM() LIMIT ?;";
 
         try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, limit);
@@ -154,14 +194,14 @@ public Movie getRandomMovie(int limit){
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return movies;
     }
 
     public List<Movie> getMovieByGenre(String genre) {
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n" +
                 "JOIN movie_genre using (movie_id)\n" +
                 "JOIN genre using (genre_id)\n" +
@@ -186,9 +226,9 @@ public Movie getRandomMovie(int limit){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n"+
-                "WHERE name ILIKE ?;";
+                "WHERE person_name ILIKE ?;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+director+"%");
@@ -208,7 +248,7 @@ public Movie getRandomMovie(int limit){
     public List<Movie> searchByTitle(String iLike){
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person ON director_id = person_id\n"+
                 "WHERE title ILIKE ?;";
 
@@ -247,9 +287,9 @@ public Movie setMovieGenre(Movie movie){
 
 public Movie setMovieActors(Movie movie){
 
-        String sql = "SELECT name FROM movie\n"+
-                "JOIN movie_person USING (movie_id)\n"+
-                "JOIN person USING (person_id)\n"+
+        String sql = "SELECT person_name as actor FROM movie\n"+
+                "JOIN movie_actor USING (movie_id)\n"+
+                "JOIN person ON person_id=actor_id\n"+
                 "WHERE title = ?;";
 
         try{
@@ -263,6 +303,15 @@ public Movie setMovieActors(Movie movie){
         return movie;
 }
 
+    public boolean delete(int id) {
+        try {
+            jdbcTemplate.update("DELETE FROM history_swipes WHERE user_id = ?", id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
 /////////////////////OBJECT HELPERS////////////////////
 
@@ -271,9 +320,9 @@ public Movie setMovieActors(Movie movie){
 
         movie.setId(rowSet.getInt("movie_id"));
         movie.setTitle(rowSet.getString("title"));
-        movie.setDatePremiered(rowSet.getDate("date_released"));
+        movie.setDatePremiered(rowSet.getDate("release_date"));
         movie.setDirector(rowSet.getString("director"));
-        movie.setPoster(rowSet.getString("poster"));
+        movie.setPoster(rowSet.getString("poster_path"));
 
         return movie;
     }
@@ -293,12 +342,4 @@ private Movie mapRowToActor(Movie movie, SqlRowSet rowSet){
         return movie;
     }
 
-    public boolean delete(int id) {
-        try {
-            jdbcTemplate.update("DELETE FROM user WHERE user_id = ?", id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 }
