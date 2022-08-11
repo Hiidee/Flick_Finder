@@ -156,11 +156,10 @@ public class JdbcMovieDao implements MovieDao {
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT  movie_id, title, date_released, poster, name as actor FROM movie\n" +
-                "JOIN person on director_id=person_id\n"+
-                "JOIN movie_genre using (movie_id)\n" +
-                "JOIN genre using (genre_id)\n" +
-                "WHERE genre_name ILIKE ?;";
+        String sql = "SELECT  movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
+                "JOIN movie_actor USING (movie_id)\n" +
+                "JOIN person on actor_id=person_id\n" +
+                "WHERE person_name ILIKE ?;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+actor+"%");
@@ -179,9 +178,9 @@ public class JdbcMovieDao implements MovieDao {
 public List<Movie> getRandomMovie(int limit){
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie "+
-                "JOIN person_id on director_id = person_id\n" +
-                "ORDER BY rand() LIMIT ?;";
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie "+
+                "JOIN person on director_id = person_id\n" +
+                "ORDER BY RANDOM() LIMIT ?;";
 
         try {
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, limit);
@@ -202,7 +201,7 @@ public List<Movie> getRandomMovie(int limit){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n" +
                 "JOIN movie_genre using (movie_id)\n" +
                 "JOIN genre using (genre_id)\n" +
@@ -227,9 +226,9 @@ public List<Movie> getRandomMovie(int limit){
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n"+
-                "WHERE name ILIKE ?;";
+                "WHERE person_name ILIKE ?;";
 
         try{
             SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, "%"+director+"%");
@@ -249,7 +248,7 @@ public List<Movie> getRandomMovie(int limit){
     public List<Movie> searchByTitle(String iLike){
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, date_released, poster, name as director FROM movie\n" +
+        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person ON director_id = person_id\n"+
                 "WHERE title ILIKE ?;";
 
@@ -288,9 +287,9 @@ public Movie setMovieGenre(Movie movie){
 
 public Movie setMovieActors(Movie movie){
 
-        String sql = "SELECT name FROM movie\n"+
-                "JOIN movie_person USING (movie_id)\n"+
-                "JOIN person USING (person_id)\n"+
+        String sql = "SELECT person_name as actor FROM movie\n"+
+                "JOIN movie_actor USING (movie_id)\n"+
+                "JOIN person ON person_id=actor_id\n"+
                 "WHERE title = ?;";
 
         try{
@@ -321,9 +320,9 @@ public Movie setMovieActors(Movie movie){
 
         movie.setId(rowSet.getInt("movie_id"));
         movie.setTitle(rowSet.getString("title"));
-        movie.setDatePremiered(rowSet.getDate("date_released"));
+        movie.setDatePremiered(rowSet.getDate("release_date"));
         movie.setDirector(rowSet.getString("director"));
-        movie.setPoster(rowSet.getString("poster"));
+        movie.setPoster(rowSet.getString("poster_path"));
 
         return movie;
     }
