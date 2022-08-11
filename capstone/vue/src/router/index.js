@@ -32,8 +32,8 @@ const router = new Router({
       }
     },
     {
-      path: '/movies',
-      name: 'movies',
+      path: '/browse',
+      name: 'browse',
       component: Browse,
       meta: {
         requiresAuth: false
