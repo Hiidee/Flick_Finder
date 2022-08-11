@@ -61,6 +61,21 @@ export default {
     }
   },
 
+  created() {
+      MovieService.listRandom().then((response) => {
+        this.movie.id = response.data.id;
+        this.movie.title = response.data.title;
+        this.movie.overview = response.data.overview;
+        this.movie.genre = response.data.genre;
+        this.movie.poster = response.data.poster;
+        this.movie.directorID = response.data.directorID;
+        this.movie.director = response.data.director;
+        this.movie.runtime = response.data.runtime;
+        this.movie.datePremiered = response.data.datePremiered;
+        this.movie.actors = response.data.actors;
+      })
+  },
+
   methods: {
     getByActor() {
       MovieService.listByActor(this.$route.params.personID).then((response) => {
@@ -122,20 +137,8 @@ export default {
       })
     },
 
-    getRandom() {
-      MovieService.listRandom().then((response) => {
-        this.movie.id = response.data.id;
-        this.movie.title = response.data.title;
-        this.movie.overview = response.data.overview;
-        this.movie.genre = response.data.genre;
-        this.movie.poster = response.data.poster;
-        this.movie.directorID = response.data.directorID;
-        this.movie.director = response.data.director;
-        this.movie.runtime = response.data.runtime;
-        this.movie.datePremiered = response.data.datePremiered;
-        this.movie.actors = response.data.actors;
-      })
-    },
+    
   }
+  
 };
 </script>
