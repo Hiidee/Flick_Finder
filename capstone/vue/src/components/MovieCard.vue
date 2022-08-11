@@ -3,7 +3,7 @@
     <div class="card-image">
       <figure class="image is-4by3">
         <img
-          v-bind:src="movie.poster"
+          v-bind:src="this.movie.poster"
           alt="Placeholder image"
         />
       </figure>
@@ -13,13 +13,13 @@
         <div class="media-left">
           <figure class="image is-48x48">
             <img
-              src="https://bulma.io/images/placeholders/96x96.png"
+              v-bind:src="this.movie.poster"
               alt="Placeholder image"
             />
           </figure>
         </div>
         <div class="media-content">
-          <p class="title is-4">John Smith</p>
+          <p class="title is-4">{{this.movie.title}}</p>
           <p class="subtitle is-6">@johnsmith</p>
         </div>
       </div>
@@ -39,6 +39,7 @@
 import MovieService from "@/services/MovieService.js";
 
 export default {
+  name: 'movie-card',
   data() {
     return {
       movie: 
