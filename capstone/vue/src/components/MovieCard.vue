@@ -34,6 +34,7 @@
         <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
       </div>
     </div>
+    <button @click="addFavoriteMovie">Add to Favorites</button>
   </div>
   </div>
 </template>
@@ -153,8 +154,9 @@ export default {
         this.movie.actors = response.data.actors;
       })
     },
-
-    
+    addFavoriteMovie() {
+      this.$store.commit('ADD_FAVORITE_MOVIE');
+    }
   }
   
 };
