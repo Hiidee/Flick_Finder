@@ -1,4 +1,5 @@
 <template>
+<main>
   <div id="app">
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
@@ -8,7 +9,11 @@
     </div>
     <router-view />
   </div>
+</main>
 </template>
 
  <style>
+ main {
+   background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
+ }
  </style>
