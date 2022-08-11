@@ -13,7 +13,7 @@
 </template>
 
  <style>
- main {
+ template {
    background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
  }
  </style>
