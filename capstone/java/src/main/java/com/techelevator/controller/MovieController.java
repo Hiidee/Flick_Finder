@@ -66,7 +66,7 @@ public class MovieController {
 
     @RequestMapping(path = "/random", method = RequestMethod.GET)
     public List<Movie> ListRandomMovies() {
-        List<Movie> movies = dao.getRandomMovie(100);
+        List<Movie> movies = dao.getRandomMovie(1);
         return movies;
     }
 

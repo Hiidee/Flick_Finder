@@ -22,16 +22,14 @@
         </div>
         <div class="media-content">
           <p class="title is-4">{{movie.title}}</p>
-          <p class="subtitle is-6">@johnsmith</p>
+          <p class="subtitle is-6">Directed By: {{movie.director}}</p>
+          <div class='subtitle is-6'>Starring: {{movie.actors}}</div>
         </div>
       </div>
 
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-        <a href="#">#responsive</a>
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+        {{movie.overview}} 
+        Placeholder Overview
       </div>
     </div>
     <button @click="addFavoriteMovie">Add to Favorites</button>
@@ -58,7 +56,7 @@ export default {
           runtime: 0,
           datePremiered: '',
           actors: []
-        }
+        },
       
 
     }
@@ -82,16 +80,19 @@ export default {
   methods: {
     getRandomMovie() {
       MovieService.listRandom().then((response) => {
-        this.movie.id = response.data.id;
-        this.movie.title = response.data.title;
-        this.movie.overview = response.data.overview;
-        this.movie.genre = response.data.genre;
-        this.movie.poster = response.data.poster;
-        this.movie.directorID = response.data.directorID;
-        this.movie.director = response.data.director;
-        this.movie.runtime = response.data.runtime;
-        this.movie.datePremiered = response.data.datePremiered;
-        this.movie.actors = response.data.actors;
+        response.data.map((item) => {
+        this.movie.id = item.id;
+        this.movie.title = item.title;
+        this.movie.overview = item.overview;
+        this.movie.genre = item.genres;
+        this.movie.poster = item.poster;
+        this.movie.directorID = item.directorId;
+        this.movie.director = item.director;
+        this.movie.runtime = item.runtime;
+        this.movie.datePremiered = item.datePremiered;
+        this.movie.actors = item.actors;
+
+        })
       })
 
     },
