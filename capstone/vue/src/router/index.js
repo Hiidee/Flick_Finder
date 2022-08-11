@@ -64,8 +64,8 @@ const router = new Router({
       }
     },
     {
-      path: "/flickfinder",
-      name: 'flickfinder',
+      path: "/flickFinder",
+      name: 'flickFinder',
       component: FlickFinder,
       meta: {
         requiresAuth: true

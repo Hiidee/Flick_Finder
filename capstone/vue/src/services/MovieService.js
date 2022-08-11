@@ -8,7 +8,7 @@ export default {
 
     
     flickfinder() {
-        return http.get('/flickfinder');
+        return http.get('/flickFinder');
     },
 
     listByActor(personID) {

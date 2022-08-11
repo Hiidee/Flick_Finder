@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MovieDao {
 
-    public Movie getRandomMovie(int limit);
+    public List<Movie> getRandomMovie(int limit);
 
     public List<Movie> getMovieByGenre(String genre);
 
@@ -18,5 +18,10 @@ public interface MovieDao {
 
     public List<Movie> getMovieByActor(String actor);
 
-    public boolean delete (int id);
+    public boolean delete(int id);
+
+    public List<Movie> getNewRecommendations(int userId, List<Movie> swipes);
+
+    public void postSwipes(int userId, List<Movie> swipes);
+
 }
