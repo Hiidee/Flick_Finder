@@ -29,7 +29,7 @@ public class MovieController {
         List<Movie> movies = new ArrayList<>();
 
         if (!Actor.equals("")) {
-            dao.getMovieByActor(Actor);
+            movies = dao.getMovieByActor(Actor);
         }
 
         return movies;
@@ -66,19 +66,19 @@ public class MovieController {
 
     @RequestMapping(path = "/random", method = RequestMethod.GET)
     public List<Movie> ListRandomMovies() {
-        List<Movie> movies = dao.getRandomMovie(1);
+        List<Movie> movies = dao.getRandomMovie(10);
         return movies;
     }
 
 
     @RequestMapping(path = "/recommendations/{userId}/", method = RequestMethod.POST)
-    public List<Movie> ListRecommendedMovies(@RequestBody List<Movie> swipes,@PathVariable int id) {
-        List<Movie> movies = dao.getNewRecommendations(id, swipes);
+    public List<Movie> ListRecommendedMovies(@RequestBody List<Movie> swipes,@PathVariable int userId) {
+        List<Movie> movies = dao.getNewRecommendations(userId, swipes);
         return movies;
     }
 
     @RequestMapping(path = "/favorites/save/{userId}/", method = RequestMethod.POST)
-    public boolean addFavoriteMovies(@RequestBody List<Movie> favorited, @PathVariable int id){
+    public boolean addFavoriteMovies(@RequestBody List<Movie> favorited, @PathVariable int userId){
         return false;//NOT IMPLEMENTED
     }
 
