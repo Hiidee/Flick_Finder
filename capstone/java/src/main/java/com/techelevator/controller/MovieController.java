@@ -70,7 +70,9 @@ public class MovieController {
         return movies;
     }
 
-    @RequestMapping(path = "/recommendations{userId}", method = RequestMethod.GET)
+
+    //NEEDS REQUEST BODY
+    @RequestMapping(path = "/recommendations/{userId}/", method = RequestMethod.GET)
     public List<Movie> ListRecommendedMovies(@PathVariable int id) {
         List<Movie> movies = new ArrayList<>();
         return movies;
