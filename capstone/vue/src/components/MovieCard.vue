@@ -1,6 +1,6 @@
 <template>
 <div class='container'>
-  <button @click="getRandomMovie">Start Swiping</button>
+  <button @click="getRandomMovie" v-if="this.$store.state.recommendations<1">Start Swiping</button>
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
@@ -29,7 +29,6 @@
 
       <div class="content">
         {{movie.overview}} 
-        Placeholder Overview
       </div>
     </div>
     <button @click="addFavoriteMovie">Add to Favorites</button>
@@ -80,19 +79,7 @@ export default {
   methods: {
     getRandomMovie() {
       MovieService.listRandom().then((response) => {
-        response.data.map((item) => {
-        this.movie.id = item.id;
-        this.movie.title = item.title;
-        this.movie.overview = item.overview;
-        this.movie.genre = item.genres;
-        this.movie.poster = item.poster;
-        this.movie.directorID = item.directorId;
-        this.movie.director = item.director;
-        this.movie.runtime = item.runtime;
-        this.movie.datePremiered = item.datePremiered;
-        this.movie.actors = item.actors;
-
-        })
+        this.$store.commit('PUSH_RECOMMENDED_LIST', response.data)
       })
 
     },
@@ -156,9 +143,13 @@ export default {
       })
     },
     addFavoriteMovie() {
-      this.$store.commit('ADD_FAVORITE_MOVIE');
+      this.$store.commit('ADD_FAVORITE_MOVIE',this.movie);
     }
   }
   
 };
 </script>
+
+<style scoped>
+
+</style>

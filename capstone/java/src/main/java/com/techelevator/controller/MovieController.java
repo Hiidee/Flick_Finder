@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/movies")
 public class MovieController {
 
@@ -66,7 +66,7 @@ public class MovieController {
 
     @RequestMapping(path = "/random", method = RequestMethod.GET)
     public List<Movie> ListRandomMovies() {
-        List<Movie> movies = dao.getRandomMovie(10);
+        List<Movie> movies = dao.getRandomMovie(100);
         return movies;
     }
 

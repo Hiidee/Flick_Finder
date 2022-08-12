@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    favorites: []
+    favorites: [],
+    recommendations:[],
   },
 
   mutations: {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
     },
     ADD_FAVORITE_MOVIE(state, payload) {
       state.favorites.push(payload);
+    },
+    PUSH_RECOMMENDED_LIST(state, movies){
+      state.recommendations = (movies);
     }
   }
 })
