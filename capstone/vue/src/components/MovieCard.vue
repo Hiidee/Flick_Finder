@@ -43,7 +43,7 @@ export default {
   name: 'movie-card',
   data() {
     return {
-      movie: 
+      movie:
         {
           id: 0,
           title: '',
@@ -61,27 +61,16 @@ export default {
     }
   },
 
-  // created() {
-  //     MovieService.listRandom().then((response) => {
-  //       this.movie.id = response.data.id;
-  //       this.movie.title = response.data.title;
-  //       this.movie.overview = response.data.overview;
-  //       this.movie.genre = response.data.genre;
-  //       this.movie.poster = response.data.poster;
-  //       this.movie.directorID = response.data.directorID;
-  //       this.movie.director = response.data.director;
-  //       this.movie.runtime = response.data.runtime;
-  //       this.movie.datePremiered = response.data.datePremiered;
-  //       this.movie.actors = response.data.actors;
-  //     })
-  // },
-
-  methods: {
-    getRandomMovie() {
-      MovieService.listRandom().then((response) => {
-        this.$store.commit('PUSH_RECOMMENDED_LIST', response.data)
+  methods: { 
+    getRecommendations() {
+      MovieService.listRecommendations(this.$store.state.user.id, this.$store.state.swipes).then((response) => {
+        this.$store.commit('STORE_MOVIE', response.data);
       })
-
+    },
+    getRandom() {
+      MovieService.listRandom().then((response) => {
+        this.$store.commit('STORE_MOVIE', response.data);
+      })
     },
     getByActor() {
       MovieService.listByActor(this.$route.params.personID).then((response) => {
