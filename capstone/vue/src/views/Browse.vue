@@ -1,6 +1,8 @@
 <template>
-  <div>
-  </div>
+  <body>
+    <div>
+    </div>
+  </body>
 </template>
 
 <script>

@@ -3,7 +3,7 @@
   <button @click="getRecommendations">Start Swiping</button>
   <div class="card">
     <div class="card-image">
-      <figure class="image is-4by3">
+      <figure class="image is-3by2">
         <img
           v-bind:src="movie.poster"
           alt="Placeholder image"
@@ -133,7 +133,7 @@ export default {
       })
     },
     addFavoriteMovie() {
-      this.$store.commit('ADD_FAVORITE_MOVIE');
+      this.$store.commit('ADD_FAVORITE_MOVIE',this.movie);
     }
   }
   
