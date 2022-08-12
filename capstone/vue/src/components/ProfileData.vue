@@ -41,11 +41,14 @@
     <div class="favorite" v-for="favorite in $store.state.favorites" v-bind:key="favorite.id">
         <div v-html="favorite.content"></div>
 </div>
+</div>
 </main>
 </template>
 
 <script>
-export default {};
+export default {
+    name: 'profile-data'
+};
 </script>
 
 <style>

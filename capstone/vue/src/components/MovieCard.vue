@@ -1,6 +1,6 @@
 <template>
 <div class='container'>
-  <button @click="getRandomMovie" v-if="this.$store.state.recommendations<1">Start Swiping</button>
+  <button @click="getRecommendations" v-if="this.$store.state.recommendations<1">Start Swiping</button>
   <div class="card">
     <div class="card-image">
       <figure class="image is-3by2">
