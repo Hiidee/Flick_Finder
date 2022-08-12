@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.techelevator.model.Movie;
 import com.techelevator.model.Person;
+import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -152,9 +153,23 @@ public class JdbcMovieDao implements MovieDao {
     }
 
 
-    ///////////ALGORITHM ENDS HERE/////////////
+    /////////////ALGORITHM ENDS HERE//////////////
 
-    ///////////ALGORITHM HELPERS////////////
+    ///////START FAVORITE ASSIGNMENTS TO DB///////
+
+    public boolean addFavoriteMovies(int userId, int movieId) {
+        try {
+            String sql = "INSERT INTO movie_favorite (user_id, movie_id) VALUES(?, ?)";
+            jdbcTemplate.update(sql, userId, movieId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    ///////END FAVORITE ASSIGNMENTS TO DB/////////
+
+    /////////////ALGORITHM HELPERS////////////////
 
     public List<Movie> getMovieByActor(String actor) {
 
