@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <h1>WELCOME TO FLICK FINDER</h1>
+    <div id="about" class="">
+    </div>
   </div>
 </template>
 
