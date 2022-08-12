@@ -2,6 +2,7 @@
 <div class='container'>
   <button @click="getRecommendations" v-if="this.$store.state.recommendations.length<1">Start Swiping</button>
   <div class="card" v-if="this.$store.state.recommendations.length>0">
+  <button @click="nextMovie">Hate</button>
     <div class="card-image">
       <figure class="image is-3by2">
         <img
@@ -10,6 +11,7 @@
         />
       </figure>
     </div>
+    <button @click="nextMovie">Like</button>
     <div class="card-content">
       <div class="media">
         <div class="media-left">
@@ -33,8 +35,6 @@
     </div>
     <button @click="addFavoriteMovie">Add to Favorites</button>
   </div>
-  <button @click="nextMovie">Hate</button>
-  <button @click="nextMovie">Like</button>
   </div>
 </template>
 
@@ -63,7 +63,14 @@ export default {
 
     }
   },
-
+  computed:{
+    sendSwipes(){
+      if(this.$store.state.swipes.length>=10){
+        this.getRecommendations();
+      }
+        return true;
+    },
+  },
   methods: { 
     
     nextMovie() {
