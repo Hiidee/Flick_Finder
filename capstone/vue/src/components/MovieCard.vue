@@ -1,7 +1,7 @@
 <template>
 <div class='container'>
-  <button @click="getRandomMovie" v-if="this.$store.state.recommendations<1">Start Swiping</button>
-  <div class="card">
+  <button @click="getRecommendations" v-if="this.$store.state.recommendations.length<1">Start Swiping</button>
+  <div class="card" v-if="this.$store.state.recommendations.length>0">
     <div class="card-image">
       <figure class="image is-3by2">
         <img
@@ -55,9 +55,7 @@ export default {
           runtime: 0,
           datePremiered: '',
           actors: []
-        },
-      
-
+        }
     }
   },
 
@@ -65,6 +63,7 @@ export default {
     getRecommendations() {
       MovieService.listRecommendations(this.$store.state.user.id, this.$store.state.swipes).then((response) => {
         this.$store.commit('STORE_MOVIE', response.data);
+        this.movie = this.$store.state.recommendations[0];
       })
     },
     getRandom() {
@@ -133,7 +132,7 @@ export default {
     },
     addFavoriteMovie() {
       this.$store.commit('ADD_FAVORITE_MOVIE',this.movie);
-    }
+    },
   }
   
 };
