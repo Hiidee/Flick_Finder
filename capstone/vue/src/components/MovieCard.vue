@@ -1,6 +1,6 @@
 <template>
 <div class='container'>
-  <button @click="getRecommendations">Start Swiping</button>
+  <button @click="getRandomMovie" v-if="this.$store.state.recommendations<1">Start Swiping</button>
   <div class="card">
     <div class="card-image">
       <figure class="image is-3by2">
@@ -29,7 +29,6 @@
 
       <div class="content">
         {{movie.overview}} 
-        Placeholder Overview
       </div>
     </div>
     <button @click="addFavoriteMovie">Add to Favorites</button>
@@ -139,3 +138,7 @@ export default {
   
 };
 </script>
+
+<style scoped>
+
+</style>
