@@ -82,6 +82,10 @@ public class MovieController {
         return false;//NOT IMPLEMENTED
     }
 
+//    @RequestMapping(path = "/flickfinder/save/{userId}/", method = RequestMethod.POST)
+//    public boolean addFavoriteMovies(@RequestBody List<Movie> favorited, @PathVariable int userId){
+//        return dao.addFavoriteMovies(userId);
+//    }
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
