@@ -1,12 +1,18 @@
 <template>
 <div>
-  <h1>Profile Form</h1>
-
+  <profile-data></profile-data>
 </div>
 </template>
 
 <script>
-export default {};
+
+import ProfileData from '@/components/ProfileData.vue'
+
+export default {
+    components: {
+        ProfileData
+    }
+}
 </script>
 
 <style>
