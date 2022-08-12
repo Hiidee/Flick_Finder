@@ -1,18 +1,18 @@
 <template>
+<body>
   <div class="home">
     <div id="about" class="">
     </div>
   </div>
+</body>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
 };
 </script>
 
 <style>
-body {
-  background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
-}
+
 </style>
