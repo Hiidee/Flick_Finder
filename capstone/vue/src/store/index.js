@@ -48,6 +48,10 @@ export default new Vuex.Store({
 
     STORE_MOVIE(state, movie) {
       state.recommendations = movie;
+    },
+
+    STORE_SWIPE(state, movie) {
+      state.swipes.unshift(movie);
     }
   }
 })

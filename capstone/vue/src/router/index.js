@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import FlickFinder from '@/views/FlickFinder.vue'
 import Browse from '@/views/Browse.vue'
+import Profile from '@/views/Profile.vue'
 
 Vue.use(Router)
 
@@ -69,7 +70,15 @@ const router = new Router({
       component: FlickFinder,
       meta: {
         requiresAuth: true
-      },
+      }
+    },
+    {
+      path: "/profile",
+      name: 'profile',
+      component: Profile,
+      Meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
