@@ -1,9 +1,6 @@
 <template>
 <div class='container'>
-<!-- <head>
-  <script src="https://kit.fontawesome.com/fe50301910.js" crossorigin="anonymous">
-   </script>
-  </head> -->
+
   <button @click="getRecommendations" v-if="this.$store.state.recommendations.length<1">Start Swiping</button>
   <div class="card" v-if="this.$store.state.recommendations.length>0">
   <button @click="hateMovie">Hate</button>
