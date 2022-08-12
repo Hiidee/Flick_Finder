@@ -52,6 +52,10 @@ export default new Vuex.Store({
 
     STORE_SWIPE(state, movie) {
       state.swipes.unshift(movie);
+    },
+
+    CLEAR_SWIPES(state) {
+      state.swipes = []
     }
   }
 })
