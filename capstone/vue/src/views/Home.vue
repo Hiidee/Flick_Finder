@@ -1,7 +1,7 @@
 <template>
 <body>
   <div class="home">
-    <div id="about" class="">
+    <div id="about" class="container">
     </div>
   </div>
 </body>
@@ -14,5 +14,7 @@ export default {
 </script>
 
 <style>
-
+.container {
+  padding-top: 3;
+}
 </style>
