@@ -2,7 +2,7 @@
 <div class='container'>
   <button @click="getRecommendations" v-if="this.$store.state.recommendations.length<1">Start Swiping</button>
   <div class="card" v-if="this.$store.state.recommendations.length>0">
-  <button @click="nextMovie">Hate</button>
+  <button @click="hateMovie">Hate</button>
     <div class="card-image">
       <figure class="image is-3by2">
         <img
@@ -11,7 +11,7 @@
         />
       </figure>
     </div>
-    <button @click="nextMovie">Like</button>
+    <button @click="likeMovie">Like</button>
     <div class="card-content">
       <div class="media">
         <div class="media-left">
@@ -64,12 +64,7 @@ export default {
     }
   },
   computed:{
-    sendSwipes(){
-      if(this.$store.state.swipes.length>=10){
-        this.getRecommendations();
-      }
-        return true;
-    },
+
   },
   methods: { 
     
@@ -77,6 +72,11 @@ export default {
       this.movie = this.$store.state.recommendations[this.i];
       this.i++;
       this.$store.commit('STORE_SWIPE', this.movie);
+      if(this.$store.state.swipes.length>=10){
+        this.getRecommendations();
+        this.$store.commit('CLEAR_SWIPES')
+        this.i=0;
+      }
     },
 
     hateMovie() {
