@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const http = axios.create({
     baseURL: "http://localhost:9000/movies"
+    
 });
 
 export default {
@@ -29,5 +30,9 @@ export default {
 
     listRandom() {
         return http.get(`/random`)
+    },
+
+    listRecommendations(userID, swipes) {
+        return http.post(`/recommendations/${userID}/`, swipes)
     }
 }

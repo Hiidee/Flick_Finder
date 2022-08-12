@@ -1,6 +1,6 @@
 <template>
 <div class='container'>
-  <button @click="getRandomMovie">Start Swiping</button>
+  <button @click="getRecommendations">Start Swiping</button>
   <div class="card">
     <div class="card-image">
       <figure class="image is-4by3">
@@ -44,7 +44,7 @@ export default {
   name: 'movie-card',
   data() {
     return {
-      movie: 
+      movie:
         {
           id: 0,
           title: '',
@@ -62,39 +62,16 @@ export default {
     }
   },
 
-  // created() {
-  //     MovieService.listRandom().then((response) => {
-  //       this.movie.id = response.data.id;
-  //       this.movie.title = response.data.title;
-  //       this.movie.overview = response.data.overview;
-  //       this.movie.genre = response.data.genre;
-  //       this.movie.poster = response.data.poster;
-  //       this.movie.directorID = response.data.directorID;
-  //       this.movie.director = response.data.director;
-  //       this.movie.runtime = response.data.runtime;
-  //       this.movie.datePremiered = response.data.datePremiered;
-  //       this.movie.actors = response.data.actors;
-  //     })
-  // },
-
-  methods: {
-    getRandomMovie() {
-      MovieService.listRandom().then((response) => {
-        response.data.map((item) => {
-        this.movie.id = item.id;
-        this.movie.title = item.title;
-        this.movie.overview = item.overview;
-        this.movie.genre = item.genres;
-        this.movie.poster = item.poster;
-        this.movie.directorID = item.directorId;
-        this.movie.director = item.director;
-        this.movie.runtime = item.runtime;
-        this.movie.datePremiered = item.datePremiered;
-        this.movie.actors = item.actors;
-
-        })
+  methods: { 
+    getRecommendations() {
+      MovieService.listRecommendations(this.$store.state.user.id, this.$store.state.swipes).then((response) => {
+        this.$store.commit('STORE_MOVIE', response.data);
       })
-
+    },
+    getRandom() {
+      MovieService.listRandom().then((response) => {
+        this.$store.commit('STORE_MOVIE', response.data);
+      })
     },
     getByActor() {
       MovieService.listByActor(this.$route.params.personID).then((response) => {
