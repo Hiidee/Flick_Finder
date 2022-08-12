@@ -12,5 +12,5 @@ export default {
 </script>
 
 <style>
-
+ /* this will be where the styles go for footer (not in app) */
 </style>
