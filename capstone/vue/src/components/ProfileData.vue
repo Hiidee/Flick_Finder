@@ -59,7 +59,8 @@ export default {
 </script>
 
 <style>
-main {
+main > div {
+  justify-content: center;
   align-content: center;
   margin-left: auto;
   margin-right: auto;
