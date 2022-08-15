@@ -9,9 +9,9 @@
     </button>
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
-        <button id = "hate" class="swipe-button" @click="hateMovie"><i class="fa-solid fa-heart-crack"></i></button>
+        <button id = "hate" class="swipe-button" @click="hateMovie"><i class="fa-solid fa-thumbs-down fa-3x"></i></button>
         <img class="center-poster" v-bind:src="movie.poster" />
-        <button id = "like" class="swipe-button" @click="likeMovie"><i class="fa-solid fa-heart"></i></button>
+        <button id = "like" class="swipe-button" @click="likeMovie"><i class="fa-solid fa-thumbs-up fa-3x"></i></button>
       </div>
       <div class="media">
         <div class="media-content">
@@ -51,7 +51,7 @@
       
       <div class="overview">
         <p id="overview-header" class="title is-4">Overview:</p>
-        <p class="overview-item">{{ movie.overview }}</p>
+        <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
         <button class="favorite-button" @click="addFavoriteMovie">
           Add to Favorites
         </button>
