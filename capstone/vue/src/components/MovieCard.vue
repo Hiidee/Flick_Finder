@@ -9,34 +9,52 @@
     </button>
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
-        <button id = "hate" class="swipe-button" @click="hateMovie">Hate</button>
+        <button id="hate" class="swipe-button" @click="hateMovie">Hate</button>
         <img class="center-poster" v-bind:src="movie.poster" />
-        <button id = "like" class="swipe-button" @click="likeMovie">Like</button>
+        <button id="like" class="swipe-button" @click="likeMovie">Like</button>
       </div>
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{movie.title}}</p>
-          <div class="subtitle is-6">Directed By: 
-            <div><i class="fa-solid fa-clapperboard"></i> {{movie.director}}</div>
-          </div>
-            
-          <div class='subtitle is-6'>Starring: 
-            <div v-for="person in movie.actors" v-bind:key="person.id"><i class="fa-solid fa-star"></i>{{person.name}}</div>
+          <div class="left-header">
+            <p class="title is-4">{{ movie.title }}</p>
+            <div class="subtitle is-6">
+              Directed By:
+              <i class="fa-solid fa-clapperboard"></i> {{ movie.director }}
             </div>
-          <p class='subtitle is-6'>Genres: {{movie.genre}}</p>
-          <p class='subtitle is-6'>Release Date: {{movie.datePremiered}}</p>
-          <p class='subtitle is-6'>Runtime: {{movie.runtime}}</p>
+          </div>
+          <div class="title is-5">
+            Starring:
+            </div>
+            <div
+              class="actor subtitle is-6"
+              v-for="person in movie.actors"
+              v-bind:key="person.id"
+            >
+              <i class="fa-solid fa-star"></i>{{ person.name }}
+          </div>
+          <div class="subtitle is-6">
+            Genres:
+            <div v-for="genre in movie.genre" v-bind:key="genre">
+              {{ genre }}
+            </div>
+          </div>
+          <div class="subtitle is-6">
+            Release Date: {{ movie.datePremiered }}
+          </div>
+          <div class="subtitle is-6">Runtime: {{ movie.runtime }}</div>
         </div>
       </div>
 
+      
       <div class="overview">
-        <p id = "overview-header" class = "title is-4">Overview: </p>
-        <p class = "overview-item">{{ movie.overview }}</p>
-        <button class = "favorite-button" @click="addFavoriteMovie">Add to Favorites</button>
-        </div>
+        <p id="overview-header" class="title is-4">Overview:</p>
+        <p class="overview-item">{{ movie.overview }}</p>
+        <button class="favorite-button" @click="addFavoriteMovie">
+          Add to Favorites
+        </button>
+      </div>
     </div>
   </div>
- 
 </template>
 
 <script>
@@ -105,13 +123,13 @@ export default {
   margin-bottom: 14px;
 }
 
-.card{
+.card {
   display: grid;
-  grid-template-columns: 0.25fr, 0.5fr, 0.25fr;
+  grid-template-columns: 0.3fr, 0.5fr, 0.2fr;
   grid-template-areas: "media center overview";
   column-gap: 50px;
   background-color: lightgray;
-  border:white;
+  border: white;
   border-style: solid;
   border-width: 10px;
 }
@@ -121,35 +139,51 @@ export default {
   grid-area: center;
 }
 
-.media-content {
+.media {
   grid-area: media;
-  margin-left:15px;
+  margin-left: 15px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
+.actors {
+  border-top: 20px;
+  border-bottom: 20px;
+  margin-top: 20px;
+}
+
+.actor {
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .overview {
   grid-area: overview;
-  margin-right:15px;
+  margin-right: 15px;
   margin-top: 20px;
-  display:flex;
+  display: flex;
+  align-content: space-between;
   flex-direction: column;
 }
 
-#overview-header{
+#overview-header {
 }
 
-.overview-item{
-  border:black;
+.overview-item {
+  border: black;
   border-style: dashed;
   border-width: 2px;
   border-radius: 5px;
-  padding:5px;
-  flex-grow:1;
+  padding: 5px;
+  flex-grow: 1;
 }
-.favorite-button{
+
+.favorite-button {
   background-color: gold;
-  flex-grow:0.2;
-  margin:20px
+  flex-grow: 0.2;
+  margin: 20px;
 }
 
 .start {
@@ -161,8 +195,8 @@ export default {
   justify-content: center;
 }
 
-.center-poster{
-  width:75%;
+.center-poster {
+  width: 75%;
 }
 
 .swipe-button {
@@ -177,15 +211,14 @@ export default {
   background-color: red;
 }
 
-@media (max-width:5000px){
-  .card{
+@media (max-width: 700px) {
+  .card {
     grid-template-columns: 1fr;
     grid-template-rows: 0.5fr, 0.25fr, 0.25fr;
-    grid-template-areas: 
-    "center"
-    "media"
-    "overview";
+    grid-template-areas:
+      "center"
+      "media"
+      "overview";
   }
 }
-
 </style>
