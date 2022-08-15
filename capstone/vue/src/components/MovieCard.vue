@@ -9,9 +9,9 @@
     </button>
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
-        <button id = "hate" class="swipe-button" @click="hateMovie">Hate</button>
+        <button id = "hate" class="swipe-button" @click="hateMovie"><i class="fa-solid fa-heart-crack"></i></button>
         <img class="center-poster" v-bind:src="movie.poster" />
-        <button id = "like" class="swipe-button" @click="likeMovie">Like</button>
+        <button id = "like" class="swipe-button" @click="likeMovie"><i class="fa-solid fa-heart"></i></button>
       </div>
       <div class="media">
         <div class="media-content">
@@ -23,9 +23,16 @@
           <div class='subtitle is-6'>Starring: 
             <div v-for="person in movie.actors" v-bind:key="person.id"><i class="fa-solid fa-star"></i>{{person.name}}</div>
             </div>
+
           <p class='subtitle is-6'>Genres: {{movie.genre}}</p>
-          <p class='subtitle is-6'>Release Date: {{movie.datePremiered}}</p>
-          <p class='subtitle is-6'>Runtime: {{movie.runtime}}</p>
+
+          <div class='subtitle is-6'>Release Date: 
+            <div><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
+            </div>
+
+          <div class='subtitle is-6'>Runtime: 
+            <div><i class="fa-solid fa-timer"></i>{{movie.runtime}}</div>
+            </div>
         </div>
       </div>
 
