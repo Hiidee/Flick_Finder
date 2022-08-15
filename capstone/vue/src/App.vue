@@ -3,8 +3,8 @@
     <div id="app">
       <div class="banner">
         <banner-view></banner-view>
-        <router-view />
       </div>
+      <router-view />
       <div class="baseline">
         <baseline-view></baseline-view>
       </div>
