@@ -24,6 +24,6 @@ public interface MovieDao {
 
     public void postSwipes(int userId, List<Movie> swipes);
 
-    public boolean addFavoriteMovies(int userId, int movieId);
+    public boolean addFavoriteMovies(int userId, List<Movie> favorited);
 
 }

@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.rmi.MarshalledObject;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -157,10 +158,14 @@ public class JdbcMovieDao implements MovieDao {
 
     ///////START FAVORITE ASSIGNMENTS TO DB///////
 
-    public boolean addFavoriteMovies(int userId, int movieId) {
+    public boolean addFavoriteMovies(int userId, List<Movie> favorited) {
         try {
+            List<Integer> userFavorites = new ArrayList<>();
+            for(Movie movie : favorited) {
+                userFavorites.add(movie.getId());
+            }
             String sql = "INSERT INTO movie_favorite (user_id, movie_id) VALUES(?, ?)";
-            jdbcTemplate.update(sql, userId, movieId);
+            jdbcTemplate.update(sql, userId, userFavorites);
             return true;
         } catch (Exception e) {
             return false;
