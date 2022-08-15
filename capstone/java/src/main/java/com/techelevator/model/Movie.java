@@ -14,14 +14,14 @@ public class Movie {
     private String poster;
     private int directorId;
     private String director;
-    private Time runtime;
+    private int runtime;
     private Date datePremiered;
     private List<Person> actors = new ArrayList<>();
 
     public Movie () {
     }
 
-    public Movie(int id, String title, String overview, String poster, int directorId, Time runtime, Date datePremiered) {
+    public Movie(int id, String title, String overview, String poster, int directorId, int runtime, Date datePremiered) {
         this.id = id;
         this.title = title;
         this.overview = overview;
@@ -71,11 +71,11 @@ public class Movie {
         this.directorId = directorId;
     }
 
-    public Time getRuntime() {
+    public int getRuntime() {
         return runtime;
     }
 
-    public void setRuntime(Time runtime) {
+    public void setRuntime(int runtime) {
         this.runtime = runtime;
     }
 

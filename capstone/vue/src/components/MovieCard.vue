@@ -35,17 +35,15 @@
           <div class="subtitle is-6">
             Genres:
             <div v-for="genre in movie.genre" v-bind:key="genre">
-              {{ genre }}
+              {{ movie.genre }}
             </div>
-
-          <p class='subtitle is-6'>Genres: {{movie.genre}}</p>
 
           <div class='subtitle is-6'>Release Date: 
             <div><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
             </div>
 
           <div class='subtitle is-6'>Runtime: 
-            <div><i class="fa-solid fa-timer"></i>{{movie.runtime}}</div>
+            <div><i class="fa-solid fa-timer"></i>{{movie.runtime}} minutes</div>
             </div>
         </div>
       </div>
@@ -59,6 +57,7 @@
         </button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -131,7 +130,7 @@ export default {
 .card {
   display: grid;
   grid-template-columns: 0.3fr, 0.5fr, 0.2fr;
-  grid-template-areas: "media center overview";
+  grid-template-areas: "media center";
   column-gap: 50px;
   background-color: lightgray;
   border: white;
@@ -150,7 +149,7 @@ export default {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-content: space-around;
+  align-items: space-between;
 }
 
 .actors {
