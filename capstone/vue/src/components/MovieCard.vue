@@ -32,27 +32,27 @@
             >
               <i class="fa-solid fa-star"></i>{{ person.name }}
           </div>
-          <div class="subtitle is-6">
+          <div class="title is-5">
             Genres:
             <div v-for="genre in movie.genre" v-bind:key="genre">
               {{ movie.genre }}
             </div>
+          </div>
 
-          <div class='subtitle is-6'>Release Date: 
-            <div><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
+          <div class='title is-5'>Release Date: 
+            <div class="subtitle is-5"><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
             </div>
 
-          <div class='subtitle is-6'>Runtime: 
-            <div><i class="fa-solid fa-timer"></i>{{movie.runtime}} minutes</div>
+          <div class='title is-5'>Runtime: 
+            <div class="subtitle is-5"><i class="fa-solid fa-clock"></i>{{movie.runtime}} minutes</div>
             </div>
         </div>
-      </div>
 
       
       <div class="overview">
         <p id="overview-header" class="title is-4">Overview:</p>
-        <p class="overview-item">{{ movie.overview }}</p>
-        <button class="favorite-button" @click="addFavoriteMovie">
+        <p class="overview-item subtitle is-5">{{ movie.overview }}</p>
+        <button class="favorite-button title is-6" @click="addFavoriteMovie">
           Add to Favorites
         </button>
       </div>
