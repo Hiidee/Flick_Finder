@@ -3,20 +3,25 @@
     <div class="home">
       <div id="about" class="container">
         <h1>About Flick Finder:</h1>
+        <br>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla
-          pellentesque dignissim enim sit amet venenatis urna cursus eget. Leo a
-          diam sollicitudin tempor. Pretium fusce id velit ut tortor pretium
-          viverra suspendisse potenti. Praesent tristique magna sit amet purus
-          gravida quis blandit. Sit amet est placerat in egestas. Integer eget
-          aliquet nibh praesent tristique magna sit. Tortor vitae purus faucibus
-          ornare suspendisse sed nisi lacus. Tempor orci eu lobortis elementum
-          nibh tellus molestie nunc. Adipiscing elit ut aliquam purus sit amet
-          luctus venenatis. Viverra ipsum nunc aliquet bibendum enim. Ultrices
-          neque ornare aenean euismod elementum. Quam adipiscing vitae proin
-          sagittis nisl rhoncus. Sed sed risus pretium quam vulputate. Imperdiet
-          proin fermentum leo vel orci.
+          How many times have you browsed through pages of random movies only to be even more confused
+          about what you want to watch? You know you saw some titles, posters, or descriptions that 
+          were intriguing, but by the end of the search, you can't remember them, and going back through
+          the whole list again is too time consuming. Don't you wish there was a way to flag multiple 
+          movies, and based on those selections, get recommendations?
+          <br>
+          <br />
+          <strong>Now there is!!!</strong>
+          <br>
+          <br />
+          With Flick Finder, your swipes help determine what you may be in the mood for. The powerful
+          algorithm identifies your swipe trends based on genres, actors, directors, and much more to 
+          narrow down an ideal selection list. You can also maintain a library of all of your favorite
+          flicks. 
+          <br>
+          <br />
+          What are you waiting for? Go flick some flicks!!
         </p>
       </div>
     </div>
@@ -33,7 +38,13 @@ export default {
 .container {
   padding-top: 3;
 }
-h1, p {
+h1 {
+  text-decoration: underline limegreen;
+}
+h1, p, strong {
   color: limegreen;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-text-stroke: .6px black;
 }
 </style>

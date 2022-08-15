@@ -83,11 +83,29 @@ public class JdbcMovieDao implements MovieDao {
             List<Movie> preferenceReturn = new ArrayList<>();
             preferenceReturn = getMovieByDirector(director.getKey());
             double numberFromPreference = (director.getValue() / preferenceSize) * 75;
-            if(preferenceReturn.size()>1) {
+            if(preferenceReturn.size()>0) {
                 for (int i = 0; i < numberFromPreference; i++) {
-                    int randomNumInRange = ThreadLocalRandom.current().nextInt(0, preferenceReturn.size());
-                    recommendations.add(preferenceReturn.get(randomNumInRange));
-                    preferenceReturn.remove(randomNumInRange);
+                    if (preferenceReturn.size() > 1) {
+                        int randomNumInRange = ThreadLocalRandom.current().nextInt(0, preferenceReturn.size());
+                        Movie movie = preferenceReturn.get(randomNumInRange);
+                        boolean shouldAdd = true;
+                        for(Movie recommended: recommendations){
+                            if(movie.getTitle().equals(recommended.getTitle())){
+                                shouldAdd = false;
+                            }
+                        }
+                        for(Movie swipe: swipes) {
+                            if (movie.getTitle().equals(swipe.getTitle())){
+                                shouldAdd = false;
+                            }
+                        }
+                        if (shouldAdd) {
+                            recommendations.add(movie);
+                        }
+                        preferenceReturn.remove(randomNumInRange);
+                    } else {
+                        recommendations.add(preferenceReturn.get(0));
+                    }
                 }
             }
         }
@@ -96,11 +114,29 @@ public class JdbcMovieDao implements MovieDao {
             List<Movie> preferenceReturn = new ArrayList<>();
             preferenceReturn = getMovieByDirector(genre.getKey());
             double numberFromPreference = (genre.getValue() / preferenceSize) * 75;
-            if(preferenceReturn.size()>1) {
+            if(preferenceReturn.size()>0) {
                 for (int i = 0; i < numberFromPreference; i++) {
-                    int randomNumInRange = ThreadLocalRandom.current().nextInt(0, preferenceReturn.size());
-                    recommendations.add(preferenceReturn.get(randomNumInRange));
-                    preferenceReturn.remove(randomNumInRange);
+                    if (preferenceReturn.size() > 1) {
+                        int randomNumInRange = ThreadLocalRandom.current().nextInt(0, preferenceReturn.size());
+                        Movie movie = preferenceReturn.get(randomNumInRange);
+                        boolean shouldAdd = true;
+                        for(Movie recommended: recommendations) {
+                            if (movie.getTitle().equals(recommended.getTitle())) {
+                                shouldAdd = false;
+                            }
+                        }
+                        for(Movie swipe: swipes) {
+                            if (movie.getTitle().equals(swipe.getTitle())){
+                                shouldAdd = false;
+                            }
+                        }
+                        if (shouldAdd) {
+                            recommendations.add(movie);
+                        }
+                        preferenceReturn.remove(randomNumInRange);
+                    } else {
+                        recommendations.add(preferenceReturn.get(0));
+                    }
                 }
             }
         }
@@ -109,16 +145,38 @@ public class JdbcMovieDao implements MovieDao {
             List<Movie> preferenceReturn = new ArrayList<>();
             preferenceReturn = getMovieByDirector(actor.getKey());
             double numberFromPreference = (actor.getValue() / preferenceSize) * 75;
-            if(preferenceReturn.size()>1) {
+            if(preferenceReturn.size()>0) {
                 for (int i = 0; i < numberFromPreference; i++) {
-                    int randomNumInRange = ThreadLocalRandom.current().nextInt(0, preferenceReturn.size());
-                    recommendations.add(preferenceReturn.get(randomNumInRange));
-                    preferenceReturn.remove(randomNumInRange);
+                    if (preferenceReturn.size() > 1) {
+                        int randomNumInRange = ThreadLocalRandom.current().nextInt(0, preferenceReturn.size());
+                        Movie movie = preferenceReturn.get(randomNumInRange);
+                        boolean shouldAdd = true;
+                        for(Movie recommended: recommendations) {
+                            if (movie.getTitle().equals(recommended.getTitle())) {
+                                shouldAdd = false;
+                            }
+                        }
+                        for(Movie swipe: swipes) {
+                            if (movie.getTitle().equals(swipe.getTitle())){
+                                shouldAdd = false;
+                            }
+                        }
+                        if (shouldAdd) {
+                            recommendations.add(movie);
+                        }
+                        preferenceReturn.remove(randomNumInRange);
+                    } else {
+                        recommendations.add(preferenceReturn.get(0));
+                    }
                 }
             }
         }
 
-        return getRandomToFillRemaining(recommendations);
+        recommendations = getRandomToFillRemaining(recommendations);
+
+        Collections.shuffle(recommendations,new Random());
+
+        return recommendations;
     }
 
     public List<Movie> getRandomToFillRemaining(List<Movie> recommendations) {
