@@ -36,12 +36,8 @@ export default {
 
 <style>
 .container {
-  padding-top: 3;
 }
-h1 {
-  text-decoration: underline limegreen;
-}
-h1, p, strong {
+.home-title, .home-description {
   color: limegreen;
   font-size: 20px;
   font-weight: bold;

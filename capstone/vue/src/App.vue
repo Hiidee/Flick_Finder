@@ -27,7 +27,7 @@ export default {
  <style>
 #app {
   background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
-  height: 100vh;
+  height: 150vh;
 }
 main {
   color: limegreen;

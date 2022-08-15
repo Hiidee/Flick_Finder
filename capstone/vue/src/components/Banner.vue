@@ -15,8 +15,9 @@
       <div class = "banner-button">
       <router-link class = "link" v-bind:to="{ name: 'flickFinder' }">Flick Finder</router-link>
       </div>
-      <div class = "banner-button">
-      <router-link class = "link" v-bind:to="{ name: 'profile' }">Profile</router-link>
+      <div class = "banner-button" v-if="$store.state.token != ''">
+      <router-link class = "link" v-bind:to="{ name: 'profile' }"
+      >Profile</router-link>
       </div>
     </div>
   </header>
