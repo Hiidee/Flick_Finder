@@ -15,9 +15,17 @@
       </div>
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ movie.title }}</p>
-          <p class="subtitle is-6">Directed By: {{ movie.director }}</p>
-          <div class="subtitle is-6">Starring: {{ movie.actors }}</div>
+          <p class="title is-4">{{movie.title}}</p>
+          <div class="subtitle is-6">Directed By: 
+            <div><i class="fa-solid fa-clapperboard"></i> {{movie.director}}</div>
+          </div>
+            
+          <div class='subtitle is-6'>Starring: 
+            <div v-for="person in movie.actors" v-bind:key="person.id"><i class="fa-solid fa-star"></i>{{person.name}}</div>
+            </div>
+          <p class='subtitle is-6'>Genres: {{movie.genre}}</p>
+          <p class='subtitle is-6'>Release Date: {{movie.datePremiered}}</p>
+          <p class='subtitle is-6'>Runtime: {{movie.runtime}}</p>
         </div>
       </div>
 
@@ -28,6 +36,7 @@
         </div>
     </div>
   </div>
+ 
 </template>
 
 <script>
