@@ -36,4 +36,8 @@ export default {
         return http.post(`/recommendations/${userID}/`, swipes)
     },
 
+    saveFavorites(userID) {
+        return http.post(`/flickfinder/save/${userID}`)
+    }
+    
 }
