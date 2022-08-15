@@ -2,8 +2,8 @@
   <body>
     <div class="home">
       <div id="about" class="container">
-        <h1>About Flick Finder:</h1>
-        <p>
+        <h1 class = "home-title">About Flick Finder:</h1>
+        <p class = "home-description">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla
           pellentesque dignissim enim sit amet venenatis urna cursus eget. Leo a
@@ -31,9 +31,8 @@ export default {
 
 <style>
 .container {
-  padding-top: 3;
 }
-h1, p {
+.home-title, .home-description {
   color: limegreen;
 }
 </style>
