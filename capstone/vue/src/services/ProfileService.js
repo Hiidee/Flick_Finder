@@ -15,7 +15,7 @@ listFavorites(userID) {
 },
 
 postFavorites(userID, favorites){
-    return http.post(`/favorites${userID}/`,favorites)
+    return http.post(`/favorites/save/${userID}/`,favorites)
 }
 
 }

@@ -35,9 +35,7 @@ export default {
 </script>
 
 <style>
-.container {
-}
-.home-title, .home-description {
+body, strong {
   color: limegreen;
   font-size: 20px;
   font-weight: bold;

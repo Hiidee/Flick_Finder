@@ -84,9 +84,7 @@ methods: {
 </script>
 
 <style>
-form {
-  justify-content: center;
-  align-content: center;
+main {
   margin-left: auto;
   margin-right: auto;
 }
