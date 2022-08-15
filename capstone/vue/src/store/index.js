@@ -23,6 +23,7 @@ export default new Vuex.Store({
     favorites: [],
     recommendations: [],
     swipes: [],
+    counter: 0,
   },
 
   mutations: {
