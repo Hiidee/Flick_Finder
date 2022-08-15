@@ -3,8 +3,8 @@
     <div id="app">
       <div class="banner">
         <banner-view></banner-view>
-        <router-view />
       </div>
+      <router-view />
       <div class="baseline">
         <baseline-view></baseline-view>
       </div>
@@ -27,7 +27,7 @@ export default {
  <style>
 #app {
   background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
-  height: 100vh;
+  height: 150vh;
 }
 main {
   color: limegreen;

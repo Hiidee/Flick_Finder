@@ -218,7 +218,7 @@ public class JdbcMovieDao implements MovieDao {
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT  movie_id, title, release_date, poster_path FROM movie\n" +
+        String sql = "SELECT overview, movie_id, title, release_date, poster_path FROM movie\n" +
                 "JOIN movie_actor USING (movie_id)\n" +
                 "JOIN person on actor_id=person_id\n" +
                 "WHERE person_name ILIKE ?;";
@@ -242,7 +242,7 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> getRandomMovie(int limit) {
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie " +
+        String sql = "SELECT overview, movie_id, title, release_date, poster_path, person_name as director FROM movie " +
                 "JOIN person on director_id = person_id\n" +
                 "ORDER BY RANDOM() LIMIT ?;";
 
@@ -265,7 +265,7 @@ public class JdbcMovieDao implements MovieDao {
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
+        String sql = "SELECT overview, movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n" +
                 "JOIN movie_genre using (movie_id)\n" +
                 "JOIN genre using (genre_id)\n" +
@@ -290,7 +290,7 @@ public class JdbcMovieDao implements MovieDao {
 
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
+        String sql = "SELECT overview, movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person on director_id=person_id\n" +
                 "WHERE person_name ILIKE ?;";
 
@@ -312,7 +312,7 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> searchByTitle(String iLike) {
         List<Movie> movies = new ArrayList<>();
 
-        String sql = "SELECT movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
+        String sql = "SELECT overview, movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
                 "JOIN person ON director_id = person_id\n" +
                 "WHERE title ILIKE ?;";
 
@@ -404,6 +404,7 @@ public class JdbcMovieDao implements MovieDao {
         movie.setDatePremiered(rowSet.getDate("release_date"));
         movie.setDirector(rowSet.getString("director"));
         movie.setPoster(rowSet.getString("poster_path"));
+        movie.setOverview(rowSet.getString("overview"));
 
         return movie;
     }

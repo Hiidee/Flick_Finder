@@ -53,13 +53,39 @@
 </template>
 
 <script>
+import ProfileService from "@/services/ProfileService.js";
+
 export default {
   name: "profile-data",
-};
+  data(){
+    return{
+    profile:
+    {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      favoriteGenres: [],
+      favorites: [],
+
+    }
+    }
+  },
+created(){
+  ProfileService.listFavorites(this.$store.state.currentUser.id);
+},
+
+methods: {
+  addFavoriteMovies() {
+      ProfileService.postFavorites(this.$store.state.currentUser.id, this.$store.state.favorites);
+    }
+}
+}
 </script>
 
 <style>
-main {
+form {
+  justify-content: center;
   align-content: center;
   margin-left: auto;
   margin-right: auto;

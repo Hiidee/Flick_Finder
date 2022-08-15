@@ -34,5 +34,6 @@ export default {
 
     listRecommendations(userID, swipes) {
         return http.post(`/recommendations/${userID}/`, swipes)
-    }
+    },
+
 }
