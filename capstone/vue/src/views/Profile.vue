@@ -18,6 +18,6 @@ export default {
 
 <style>
 body {
-  justify-content: center;
+  justify-items: center;
 }
 </style>
