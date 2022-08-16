@@ -1,21 +1,21 @@
 <template>
   <header>
     <div id="nav">
-      <router-link class="link" v-bind:to="{ name: 'home' }" v-on:click="saveFavoriteMovie()"
+      <router-link class="link" v-bind:to="{ name: 'home' }" v-on:click.native="saveFavoriteMovie()"
         ><div class="banner-button">Home</div></router-link
       >
-      <router-link class="link" v-bind:to="{ name: 'flickFinder' }" v-on:click="saveFavoriteMovie()"
+      <router-link class="link" v-bind:to="{ name: 'flickFinder' }" v-on:click.native="saveFavoriteMovie()"
         ><div class="banner-button">Flick Finder</div></router-link
       >
-      <router-link class="link" v-bind:to="{ name: 'browse' }" v-on:click="saveFavoriteMovie()"
+      <router-link class="link" v-bind:to="{ name: 'browse' }" v-on:click.native="saveFavoriteMovie()"
         ><div class="banner-button">Browse</div></router-link
       >
-      <router-link class="link" v-bind:to="{ name: 'profile' }" v-on:click="saveFavoriteMovie()"
+      <router-link class="link" v-bind:to="{ name: 'profile' }" v-on:click.native="saveFavoriteMovie()"
         ><div class="banner-button" v-if="$store.state.token != ''">
           Profile
         </div></router-link
       >
-      <router-link class="link" v-bind:to="{ name: 'logout' }" v-on:click="saveFavoriteMovie()"
+      <router-link class="link" v-bind:to="{ name: 'logout' }" v-on:click.native="saveFavoriteMovie()"
         ><div class="banner-button" v-if="$store.state.token != ''">
           Logout
         </div></router-link
@@ -33,7 +33,7 @@ export default {
   methods: {
     saveFavoriteMovie() {
       MovieService.saveFavorites(
-        this.$store.state.currentUser.id,
+        this.$store.state.user.id,
         this.$store.state.favorites
       ).then((response) => {
         this.$store.commit(response.data);
