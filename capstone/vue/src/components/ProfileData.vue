@@ -211,7 +211,7 @@ export default {
   methods: {
     addFavoriteMovies() {
       ProfileService.postFavorites(
-        this.$store.state.currentUser.id,
+        this.$store.state.user.id,
         this.$store.state.favorites
       );
     },
