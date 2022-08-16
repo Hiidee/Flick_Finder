@@ -25,8 +25,10 @@
 </template>
 
 <script>
+
 export default {
   name: "banner",
+  
 };
 </script>
 

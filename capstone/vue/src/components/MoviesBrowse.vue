@@ -6,7 +6,7 @@
       </div>
     <div
       class="browse-card"
-      v-for="movie in browsing"
+      v-for="movie in this.$store.state.browse"
       v-bind:key="movie.id"
     >
       <img v-bind:src="movie.poster" />
@@ -22,7 +22,6 @@ export default {
   data() {
     return {
         filter:'',
-      browsing: [],
     };
   },
   created() {
