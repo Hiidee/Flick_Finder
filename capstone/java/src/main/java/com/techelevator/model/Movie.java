@@ -10,7 +10,7 @@ public class Movie {
     private int id;
     private String title;
     private String overview;
-    private List<String> genres = new ArrayList<>();
+    private List<Genre> genres = new ArrayList<>();
     private String poster;
     private int directorId;
     private String director;
@@ -87,7 +87,7 @@ public class Movie {
         return director;
     }
 
-    public List<String> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 

@@ -4,6 +4,7 @@ import java.rmi.MarshalledObject;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.techelevator.model.Genre;
 import com.techelevator.model.Movie;
 import com.techelevator.model.Person;
 import com.techelevator.model.User;
@@ -42,7 +43,7 @@ public class JdbcMovieDao implements MovieDao {
                 actors.add(movie.getActors().get(x).getName());
             }
             for (int y = 0; y < movie.getGenres().size(); y++) {
-                genres.add(movie.getGenres().get(y));
+                genres.add(movie.getGenres().get(y).getName());
             }
             directors.add(movie.getDirector());
         }
@@ -353,7 +354,7 @@ public class JdbcMovieDao implements MovieDao {
 
     public Movie setMovieGenre(Movie movie) {
 
-        String sql = "select genre_name from movie\n" +
+        String sql = "select genre_name, genre_id from movie\n" +
                 "join movie_genre using (movie_id)\n" +
                 "join genre using (genre_id)\n" +
                 "where title = ?;";
@@ -442,7 +443,10 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     private Movie mapRowToGenre(Movie movie, SqlRowSet rowSet) {
-        movie.getGenres().add(rowSet.getString("genre_name"));
+        Genre genre = new Genre();
+        genre.setId(rowSet.getInt("genre_id"));
+        genre.setName(rowSet.getString("genre_name"));
+        movie.getGenres().add(genre);
 
         return movie;
     }
