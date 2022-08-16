@@ -39,7 +39,17 @@ export default {
     },
 
     saveFavorites(userID, favorites) {
-        return http.post(`/flickfinder/save/${userID}`, favorites)
+        return http.post(`/favorites/save/${userID}/`, favorites)
+    },
+
+    listFavorites(userID) {
+        return http.get(`/favorites/${userID}/`)
+    },
+    addMovie(movie) {
+        return http.post(`/add`, movie)
     }
+
     
-}
+       
+    }
+
