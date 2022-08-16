@@ -8,6 +8,7 @@ import store from '../store/index'
 import FlickFinder from '@/views/FlickFinder.vue'
 import Browse from '@/views/Browse.vue'
 import Profile from '@/views/Profile.vue'
+import DetailView from "@/views/DetailView.vue"
 
 Vue.use(Router)
 
@@ -79,6 +80,11 @@ const router = new Router({
       Meta: {
         requiresAuth: true
       }
+    },
+    {
+      path:"/movie/:id",
+      name:"movie-detail",
+      component: DetailView
     }
   ]
 })
