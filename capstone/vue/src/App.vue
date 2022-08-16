@@ -30,6 +30,5 @@ export default {
   height: 150vh;
 }
 main {
-  color: limegreen;
 }
 </style>
