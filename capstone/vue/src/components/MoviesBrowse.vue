@@ -1,8 +1,8 @@
 <template>
   <div class="container">
       <div class = "searchbar">
+            <label for="search">Filter Movies: </label>
           <input class="search" type="text"/>
-          <label for="search">Filter Movies: </label>
       </div>
     <div
       class="browse-card"
@@ -37,4 +37,8 @@ export default {
 </script>
 
 <style>
+.container{
+    background-color: lightskyblue;
+}
+
 </style>
