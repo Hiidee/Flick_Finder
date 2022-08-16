@@ -214,6 +214,13 @@ public class JdbcMovieDao implements MovieDao {
 
 
     /////////////ALGORITHM ENDS HERE//////////////
+    public boolean addMovieToDatabase(Movie movie) {
+        String sql = "INSERT INTO movie (title, overview, poster_path, release_date, length_minutes)\n" +
+        "VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.queryForRowSet(sql, movie.getTitle(), movie.getOverview(), movie.getPoster(), movie.getDatePremiered(), movie.getRuntime());
+        return true;
+    }
+
 
     ///////START FAVORITE ASSIGNMENTS TO DB///////
 
