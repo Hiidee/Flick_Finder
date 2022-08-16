@@ -39,8 +39,8 @@
             
           <div class="title is-5">
             Genres:
-            <div class="genre subtitle is-6" v-for="genre in movie.genre" v-bind:key="genre">
-              {{ genre }}
+            <div class="subtitle is-6" v-for="genre in movie.genres" v-bind:key="genre.id">
+              {{ genre.name }}
             </div>
           </div>
 

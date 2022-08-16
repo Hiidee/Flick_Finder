@@ -1,13 +1,14 @@
 <template>
-  <body>
-    <div>
-    </div>
-  </body>
+  <movies-browse/>
 </template>
 
 <script>
-export default {
+import MoviesBrowse from "@/components/MoviesBrowse.vue";
 
+export default {
+components:{
+  MoviesBrowse,
+}
 }
 </script>
 
