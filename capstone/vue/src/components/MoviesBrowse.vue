@@ -22,20 +22,14 @@
 </template>
 
 <script>
-//import MovieService from "@/services/MovieService.js";
 
 export default {
   name: "browse",
   data() {
     return {
         filter:'',
-        browsing:[],
     };
   },
-//   created() {
-//     this.browsing=this.$store.state.browse;
-//     this.$store.state.browse = MovieService.listRandom();
-//   },
   computed:{
       filterMovies(){
           return this.$store.state.browse.filter((movie)=>{
