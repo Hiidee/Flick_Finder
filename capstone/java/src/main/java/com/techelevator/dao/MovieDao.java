@@ -26,4 +26,6 @@ public interface MovieDao {
 
     public boolean addFavoriteMovies(int userId, List<Movie> favorited);
 
+    public boolean addMovieToDatabase(Movie movie);
+
 }
