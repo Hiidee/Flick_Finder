@@ -11,7 +11,13 @@ import MovieCard from '@/components/MovieCard.vue'
 export default {
   components: {
     MovieCard
-  }
+  },
+  //   created() {
+  //   window.addEventListener('beforeunload', (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = ' ';
+  //   });
+  // }
 }
 </script>
 
