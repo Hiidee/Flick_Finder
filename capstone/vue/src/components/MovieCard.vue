@@ -36,10 +36,11 @@
               <i class="fa-solid fa-star"></i> {{ person.name }}
           </div>
             </div>
+            
           <div class="title is-5">
             Genres:
-            <div v-for="genre in movie.genre" v-bind:key="genre">
-              {{ movie.genre }}
+            <div class="genre subtitle is-6" v-for="genre in movie.genre" v-bind:key="genre">
+              {{ genre }}
             </div>
           </div>
 
@@ -48,7 +49,7 @@
             </div>
 
           <div class='title is-5'>Runtime: 
-            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i>{{movie.runtime}} minutes</div>
+            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i> {{movie.runtime}} minutes</div>
             </div>
         </div>
 
