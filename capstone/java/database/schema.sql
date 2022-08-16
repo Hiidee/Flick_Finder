@@ -1,6 +1,6 @@
 BEGIN TRANSACTION ;
 
-DROP TABLE IF EXISTS history_swipes, movie_genre, movie_actor, movie_favorite, users, person, movie, genre, collection;
+DROP TABLE IF EXISTS favorite_genre, history_swipes, movie_genre, movie_actor, movie_favorite, profile, users, person, movie, genre, collection;
 
 CREATE TABLE collection (
 	collection_id serial,
@@ -55,6 +55,27 @@ CREATE TABLE movie (
 	CONSTRAINT FK_movie_person FOREIGN KEY (director_id) REFERENCES person(person_id),
 	CONSTRAINT FK_movie_collection FOREIGN KEY (collection_id) REFERENCES collection(collection_id)
 );
+
+CREATE TABLE profile (
+	profile_id serial,
+	user_id int,
+	first_name varchar(50),
+	last_name varchar(60),
+	email varchar(100),
+
+	CONSTRAINT PK_profile_id PRIMARY KEY (profile_id),
+	CONSTRAINT FK_profile_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE favorite_genre (
+	user_id int,
+	genre_id int,
+
+	CONSTRAINT PK_favorite_genre PRIMARY KEY (genre_id, user_id),
+	CONSTRAINT FK_genre_user_genre FOREIGN KEY (genre_id) REFERENCES genre(genre_id),
+	CONSTRAINT FK_genre_user_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 
 CREATE TABLE movie_actor (
 	movie_id int NOT NULL,
