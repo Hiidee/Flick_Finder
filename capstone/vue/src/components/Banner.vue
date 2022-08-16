@@ -25,7 +25,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import MovieService from "@/services/MovieService.js";
 
 export default {
@@ -41,12 +40,6 @@ export default {
       });
     },
   },
-=======
-
-export default {
-  name: "banner",
-  
->>>>>>> 73d32b0cfcbf0c9b24de10070ba295ba938455b7
 };
 </script>
 
