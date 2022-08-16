@@ -85,7 +85,7 @@ const router = new Router({
       path:"/movie/:id",
       name:"movie-detail",
       component: DetailView
-    }
+    },
   ]
 })
 
