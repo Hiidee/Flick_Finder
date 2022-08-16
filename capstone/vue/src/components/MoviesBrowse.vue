@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container-browse">
       <div class = "searchbar">
             <label for="search">Filter Movies: </label>
           <input class="search" type="text"/>
       </div>
     <div
       class="browse-card"
-      v-for="movie in $store.state.recommendations"
+      v-for="movie in browsing"
       v-bind:key="movie.id"
     >
       <img v-bind:src="movie.poster" />
@@ -22,22 +22,17 @@ export default {
   data() {
     return {
         filter:'',
-      recommendations: [],
+      browsing: [],
     };
   },
   created() {
-    if (this.$store.state.recommendations.length < 1) {
-      this.recommendations = MovieService.listRecommendations();
-      this.$store.state.recommendations = this.recommendations;
-    } else {
-      this.recommendations = this.$store.state.recommendations;
-    }
+    this.browsing = MovieService.listRandom();
   },
 };
 </script>
 
 <style>
-.container{
+.container-browse{
     background-color: lightskyblue;
 }
 
