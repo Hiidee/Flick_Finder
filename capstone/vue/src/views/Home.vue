@@ -36,9 +36,17 @@ export default {
 
 <style>
 body, strong {
-  color: limegreen;
   font-size: 20px;
   font-weight: bold;
   -webkit-text-stroke: .6px black;
+}
+
+.home{
+  background-color: white;
+  opacity: 50%;
+}
+
+.container{
+  opacity:2;
 }
 </style>

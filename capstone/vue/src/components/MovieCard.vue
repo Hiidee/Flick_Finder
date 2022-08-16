@@ -10,7 +10,7 @@
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
         <button id = "hate" class="swipe-button" @click="hateMovie"><i class="fa-solid fa-thumbs-down fa-3x"></i></button>
-        <img class="center-poster" v-bind:src="movie.poster" />
+        <img class="center-poster" v-bind:src="movie.poster"/>
         <button id = "like" class="swipe-button" @click="likeMovie"><i class="fa-solid fa-thumbs-up fa-3x"></i></button>
       </div>
       <div class="media">
@@ -24,7 +24,7 @@
           </div>
           <div class="title is-5">
             Starring:
-            </div>
+            <div></div>
             <div
               class="actor subtitle is-6"
               v-for="person in movie.actors"
@@ -32,6 +32,7 @@
             >
               <i class="fa-solid fa-star"></i>{{ person.name }}
           </div>
+            </div>
           <div class="title is-5">
             Genres:
             <div v-for="genre in movie.genre" v-bind:key="genre">
@@ -40,18 +41,18 @@
           </div>
 
           <div class='title is-5'>Release Date: 
-            <div class="subtitle is-5"><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
+            <div class="subtitle is-6"><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
             </div>
 
           <div class='title is-5'>Runtime: 
-            <div class="subtitle is-5"><i class="fa-solid fa-clock"></i>{{movie.runtime}} minutes</div>
+            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i>{{movie.runtime}} minutes</div>
             </div>
         </div>
 
       
       <div class="overview">
         <p id="overview-header" class="title is-4">Overview:</p>
-        <p class="overview-item subtitle is-5">{{ movie.overview }}</p>
+        <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
         <button class="favorite-button title is-6" @click="addFavoriteMovie">
           Add to Favorites
         </button>
@@ -152,6 +153,10 @@ export default {
   align-items: space-between;
 }
 
+.left-header{
+  margin-bottom: 20px;
+}
+
 .actors {
   border-top: 20px;
   border-bottom: 20px;
@@ -186,7 +191,7 @@ export default {
 
 .favorite-button {
   background-color: gold;
-  flex-grow: 0.2;
+  flex-grow: 0.3;
   margin: 20px;
 }
 
@@ -207,13 +212,21 @@ export default {
   width: 200px;
 }
 
-#like {
-  background-color: limegreen;
+#like,#hate,.fa-thumbs-up,.fa-thumbs-down{
+  color:transparent;
+  background-color: transparent;
+  border: none;
 }
 
-#hate {
-  background-color: red;
+#like:hover,#hate:hover{
+  background-color: darkgrey;
+  opacity: 25%;
 }
+
+#like:hover>.fa-thumbs-up, #hate:hover>.fa-thumbs-down{
+  color: black;
+}
+
 
 @media (max-width: 700px) {
   .card {
