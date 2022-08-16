@@ -2,7 +2,7 @@
   <div class="container-browse">
       <div class = "searchbar">
             <label for="search">Filter Movies: </label>
-          <input class="search" type="text"/>
+          <input class="search" type="text" v-model="filter"/>
       </div>
     <div
       class="browse-card"
@@ -26,8 +26,32 @@ export default {
     };
   },
   created() {
-    this.browsing = MovieService.listRandom();
+    this.browsing=this.$store.state.browse;
+    this.$store.state.browse = MovieService.listRandom();
   },
+  computed:{
+      filterMovies(){
+          return this.browsing.filter((movie)=>{
+              if(this.filter==''){
+                  return true;
+              }
+              for(let i=0; i<movie.genres.length; i++){
+                if(movie.genres[i].name.toLowerCase.contains(this.filter.toLowerCase)){
+                    return true;
+                }
+              }
+              for(let i=0; i<movie.actors.length; i++){
+                  if(movie.actors[i].name.toLowerCase.contains(this.filter.toLowerCase)){
+                      return true;
+                  }
+              }
+              if(movie.director.toLowerCase.contains(this.filter.toLowerCase)){
+                    return true;
+                }
+            return false;
+          })
+      }
+  }
 };
 </script>
 
