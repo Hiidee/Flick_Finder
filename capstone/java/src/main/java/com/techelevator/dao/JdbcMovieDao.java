@@ -223,8 +223,11 @@ public class JdbcMovieDao implements MovieDao {
             for(Movie movie : favorited) {
                 userFavorites.add(movie.getId());
             }
-            String sql = "INSERT INTO movie_favorite (user_id, movie_id) VALUES(?, ?)";
-            jdbcTemplate.update(sql, userId, userFavorites);
+            for(int movieId : userFavorites) {
+                String sql = "INSERT INTO movie_favorite (user_id, movie_id) VALUES(?, ?)";
+
+                jdbcTemplate.update(sql, userId, movieId);
+            }
             return true;
         } catch (Exception e) {
             return false;
