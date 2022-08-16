@@ -29,8 +29,16 @@
 </template>
 
 <script>
+import MovieService from "@/services/MovieService.js"
 export default {
   name: "home",
+
+  created() {
+      MovieService.listRandom().then((response) => {
+        this.$store.state.browse = response.data;
+      })
+  
+  }
 };
 </script>
 

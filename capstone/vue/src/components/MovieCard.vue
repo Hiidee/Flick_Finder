@@ -17,11 +17,14 @@
         <div class="media-content">
           <div class="left-header">
             <p class="title is-4">{{ movie.title }}</p>
-            <div class="subtitle is-6">
+
+            <div class="title is-5">
               Directed By:
-              <i class="fa-solid fa-clapperboard"></i> {{ movie.director }}
+              <div><i class="fa-solid fa-clapperboard"></i> {{ movie.director }}</div>
             </div>
+
           </div>
+
           <div class="title is-5">
             Starring:
             <div></div>
@@ -30,13 +33,14 @@
               v-for="person in movie.actors"
               v-bind:key="person.id"
             >
-              <i class="fa-solid fa-star"></i>{{ person.name }}
+              <i class="fa-solid fa-star"></i> {{ person.name }}
           </div>
             </div>
+
           <div class="title is-5">
             Genres:
-            <div v-for="genre in movie.genre" v-bind:key="genre">
-              {{ movie.genre }}
+            <div class="subtitle is-6" v-for="genre in movie.genres" v-bind:key="genre.id">
+              {{ genre.name }}
             </div>
           </div>
 
@@ -45,7 +49,7 @@
             </div>
 
           <div class='title is-5'>Runtime: 
-            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i>{{movie.runtime}} minutes</div>
+            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i> {{movie.runtime}} minutes</div>
             </div>
         </div>
 
@@ -123,6 +127,7 @@ export default {
 </script>
 
 <style>
+
 .container {
   margin-top: 30px;
   margin-bottom: 14px;
@@ -216,6 +221,7 @@ export default {
   color:transparent;
   background-color: transparent;
   border: none;
+
 }
 
 #like:hover,#hate:hover{
@@ -225,7 +231,10 @@ export default {
 
 #like:hover>.fa-thumbs-up, #hate:hover>.fa-thumbs-down{
   color: black;
+  opacity: 100%;
 }
+
+
 
 
 @media (max-width: 700px) {
