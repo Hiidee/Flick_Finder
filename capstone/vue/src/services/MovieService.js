@@ -43,5 +43,11 @@ export default {
     listFavorites(userID) {
         return http.get(`/favorites/${userID}/`)
     },
+    addMovie(movie) {
+        return http.post(`/add`, movie)
+    }
 
-}
+    
+       
+    }
+

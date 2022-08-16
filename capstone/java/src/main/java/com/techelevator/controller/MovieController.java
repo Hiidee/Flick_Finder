@@ -93,6 +93,11 @@ public class MovieController {
         return dao.addFavoriteMovies(userId, favorited);
     }
 
+    @RequestMapping(path = "/add", method = RequestMethod.POST)
+    public boolean addMovieToDatabase(@RequestBody Movie movie) {
+        return dao.addMovieToDatabase(movie);
+    }
+
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
 //        return dao.get(id);
