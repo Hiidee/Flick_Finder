@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: "http://localhost:9000/movies"
-    
+    baseURL: "http://localhost:9000/movies",
+    // headers:{
+    //     'Authorization':`Bearer ${Token}`
+    // }
 });
 
 export default {
