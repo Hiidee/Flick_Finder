@@ -36,7 +36,7 @@
               <i class="fa-solid fa-star"></i> {{ person.name }}
           </div>
             </div>
-            
+
           <div class="title is-5">
             Genres:
             <div class="subtitle is-6" v-for="genre in movie.genres" v-bind:key="genre.id">
@@ -221,6 +221,7 @@ export default {
   color:transparent;
   background-color: transparent;
   border: none;
+
 }
 
 #like:hover,#hate:hover{
@@ -230,7 +231,10 @@ export default {
 
 #like:hover>.fa-thumbs-up, #hate:hover>.fa-thumbs-down{
   color: black;
+  opacity: 100%;
 }
+
+
 
 
 @media (max-width: 700px) {
