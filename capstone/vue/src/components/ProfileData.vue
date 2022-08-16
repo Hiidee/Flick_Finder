@@ -178,7 +178,7 @@
           v-for="favorite in $store.state.favorites"
           v-bind:key="favorite.id"
         >
-          <div v-html="favorite.content"></div>
+          <div >{{favorite.title}}</div>
         </div>
       </div>
     </div>
@@ -188,7 +188,7 @@
 </template>
 
 <script>
-import ProfileService from "@/services/ProfileService.js";
+import MovieService from "@/services/MovieService.js";
 
 export default {
   name: "profile-data",
@@ -205,12 +205,18 @@ export default {
     };
   },
   created() {
-    ProfileService.listFavorites(this.$store.state.currentUser.id);
+    MovieService.listFavorites(this.$store.state.user.id).then( (response) => {
+      response.data.forEach(movie => { 
+        this.$store.commit("ADD_FAVORITE_MOVIE", movie);
+        //this.profile.favorites.push(movie.title)
+      });
+    });
   },
 
   methods: {
+    saveProfile() {},
     addFavoriteMovies() {
-      ProfileService.postFavorites(
+      MovieService.postFavorites(
         this.$store.state.user.id,
         this.$store.state.favorites
       );
