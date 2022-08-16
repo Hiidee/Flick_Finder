@@ -6,7 +6,7 @@
       </div>
     <div
       class="browse-card"
-      v-for="movie in browsing"
+      v-for="movie in this.$store.state.browse"
       v-bind:key="movie.id"
     >
       <img v-bind:src="movie.poster" />
@@ -15,18 +15,12 @@
 </template>
 
 <script>
-import MovieService from "@/services/MovieService.js";
-
 export default {
   name: "browse",
   data() {
     return {
         filter:'',
-      browsing: [],
     };
-  },
-  created() {
-    this.browsing = MovieService.listRandom();
   },
 };
 </script>
