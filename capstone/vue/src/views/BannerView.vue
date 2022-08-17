@@ -12,10 +12,3 @@ export default {
   name: "banner-view",
 };
 </script>
-
-<style>
-template {
-  color: limegreen;
-}
- /* this will be where the style for the banner goes (not in app) */
-</style>

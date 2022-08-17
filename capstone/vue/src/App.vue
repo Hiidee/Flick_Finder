@@ -1,12 +1,12 @@
 <template>
-  <main>
+  <main class = "main">
     <div id="app">
       <div class="banner">
         <banner-view></banner-view>
       </div>
-      <router-view />
+      <router-view class = "router" />
       <div class="baseline">
-        <baseline-view></baseline-view>
+        <baseline-view class="footer"></baseline-view>
       </div>
     </div>
   </main>
@@ -26,9 +26,12 @@ export default {
 
  <style>
 #app {
-  background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
-  height: 150vh;
+  background: linear-gradient(0deg, #0C090A, #52595D 40%, #262a30);
+  height: 120%;
+  color: rgb(184, 207, 209);
 }
-main {
+
+.router{
+  height: 100vh;
 }
 </style>

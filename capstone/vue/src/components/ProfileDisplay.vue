@@ -55,12 +55,7 @@ export default {
 </script>
 
 <style>
-
-#username, 
-#first-name, 
-#last-name, 
-#email-address {
-    margin: 15px
-}
-
+  p {
+    color: rgb(173, 186, 187);
+  }
 </style>

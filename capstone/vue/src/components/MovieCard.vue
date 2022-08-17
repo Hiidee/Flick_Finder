@@ -3,9 +3,13 @@
     <button class="button-85" @click="getRecommendations" v-if="this.$store.state.recommendations.length < 1" role="button">Start Swiping</button>
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
-        <button id = "hate" class="swipe-button" @click="hateMovie"><i class="fa-solid fa-thumbs-down fa-3x"></i></button>
-        <img class="center-poster" v-bind:src="movie.poster"/>
-        <button id = "like" class="swipe-button" @click="likeMovie"><i class="fa-solid fa-thumbs-up fa-3x"></i></button>
+        <button id="hate" class="swipe-button" @click="hateMovie">
+          <i class="fa-solid fa-thumbs-down fa-3x"></i>
+        </button>
+        <img class="center-poster" v-bind:src="movie.poster" />
+        <button id="like" class="swipe-button" @click="likeMovie">
+          <i class="fa-solid fa-thumbs-up fa-3x"></i>
+        </button>
       </div>
       <div class="media">
         <div class="media-content">
@@ -14,9 +18,10 @@
 
             <div class="title is-5">
               Directed By:
-              <div><i class="fa-solid fa-clapperboard"></i> {{ movie.director }}</div>
+              <div>
+                <i class="fa-solid fa-clapperboard"></i> {{ movie.director }}
+              </div>
             </div>
-
           </div>
 
           <div class="title is-5">
@@ -28,39 +33,50 @@
               v-bind:key="person.id"
             >
               <i class="fa-solid fa-star"></i> {{ person.name }}
-          </div>
             </div>
+          </div>
 
           <div class="title is-5">
             Genres:
-            <div class="subtitle is-6" v-for="genre in movie.genres" v-bind:key="genre.id">
+            <div
+              class="subtitle is-6"
+              v-for="genre in movie.genres"
+              v-bind:key="genre.id"
+            >
               <i class="fa-solid fa-film"></i> {{ genre.name }}
             </div>
           </div>
 
-          <div class='title is-5'>Release Date: 
-            <div class="subtitle is-6"><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
+          <div class="title is-5">
+            Release Date:
+            <div class="subtitle is-6">
+              <i class="fa-solid fa-calendar-days"></i>
+              {{ movie.datePremiered }}
             </div>
+          </div>
 
-          <div class='title is-5'>Runtime: 
-            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i> {{movie.runtime}} minutes</div>
+          <div class="title is-5">
+            Runtime:
+            <div class="subtitle is-6">
+              <i class="fa-solid fa-clock"></i> {{ movie.runtime }} minutes
             </div>
+          </div>
         </div>
 
-      
-      <div class="overview">
-        <p id="overview-header" class="title is-4">Overview:</p>
-        <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
+        <div class="overview">
+          <p id="overview-header" class="title is-4">Overview:</p>
+          <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
 
           <div class="favorite-button">
-          <i class="fa-solid fa-heart-circle-plus fa-3x favorite-button" @click="addFavoriteMovie"></i>
-          <div class="subtitle is-4 favorite-label">Favorite</div>
+            <i
+              class="fa-solid fa-heart-circle-plus fa-3x favorite-button"
+              @click="addFavoriteMovie"
+            ></i>
+            <div class="subtitle is-4 favorite-label">Favorite</div>
           </div>
-           
-
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -125,7 +141,6 @@ export default {
 </script>
 
 <style>
-
 .container {
   margin-top: 30px;
   margin-bottom: 14px;
@@ -158,7 +173,7 @@ export default {
   align-items: space-between;
 }
 
-.left-header{
+.left-header {
   margin-bottom: 20px;
 }
 
@@ -202,12 +217,12 @@ export default {
 
 .favorite-label {
   margin: 20px 5px 20px 160px;
-  color: paleturquoise
+  color: paleturquoise;
 }
 
-.favorite-label:hover, .favorite-button:hover {
-  color:palevioletred
-
+.favorite-label:hover,
+.favorite-button:hover {
+  color: palevioletred;
 }
 
 .start {
@@ -227,19 +242,23 @@ export default {
   width: 200px;
 }
 
-#like,#hate,.fa-thumbs-up,.fa-thumbs-down{
-  color:transparent;
+#like,
+#hate,
+.fa-thumbs-up,
+.fa-thumbs-down {
+  color: transparent;
   background-color: transparent;
   border: none;
-
 }
 
-#like:hover,#hate:hover{
+#like:hover,
+#hate:hover {
   background-color: darkgrey;
   opacity: 25%;
 }
 
-#like:hover>.fa-thumbs-up, #hate:hover>.fa-thumbs-down{
+#like:hover > .fa-thumbs-up,
+#hate:hover > .fa-thumbs-down {
   color: black;
   opacity: 100%;
 }
