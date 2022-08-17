@@ -26,9 +26,8 @@ export default {
 
  <style>
 #app {
-  background-image: url(https://wallpaperaccess.com/full/4840785.jpg);
-  height: 150vh;
-}
-main {
+  background: linear-gradient(0deg, #0C090A, #52595D 40%, #262a30);
+  height: 100vh;
+  color: rgb(184, 207, 209);
 }
 </style>

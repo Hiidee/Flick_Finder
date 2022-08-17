@@ -19,9 +19,3 @@ export default {
   },
 };
 </script>
-
-<style>
-body {
-  justify-items: center;
-}
-</style>
