@@ -20,9 +20,9 @@ public class JdbcProfileDao implements ProfileDao{
 
     public boolean createProfileOnRegister(int userId){
         String sql = "INSERT INTO profile (user_id,first_name,last_name,email)\n"+
-                "VALUES (?,,'','','');";
+                "VALUES (?,'','','');";
         try{
-            jdbcTemplate.queryForRowSet(sql, userId);
+            jdbcTemplate.update(sql, userId);
             return true;
         }catch(Exception e){
             e.printStackTrace();
