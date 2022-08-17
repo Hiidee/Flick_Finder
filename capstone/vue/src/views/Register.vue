@@ -71,7 +71,10 @@ export default {
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
+                
               });
+              ProfileService.createProfile(this.$store.state.user.id)
+
             }
           })
           .catch((error) => {
@@ -82,7 +85,6 @@ export default {
             }
           });
       }
-      ProfileService.createProfile(this.$store.state.user.id)
     },
     clearErrors() {
       this.registrationErrors = false;
