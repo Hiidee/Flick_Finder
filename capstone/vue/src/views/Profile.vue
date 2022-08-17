@@ -1,8 +1,11 @@
 <template>
   <body>
     <div>
-      <profile-display></profile-display>
-      <profile-data></profile-data>
+      <div>
+        <i class="fa-solid fa-pen-to-square fa-2x" id="edit-profile" @click="flipStatus"></i>
+    </div>
+      <profile-display v-if="!showForm"></profile-display>
+      <profile-data v-if="showForm"></profile-data>
     </div>
   </body>
 </template>
@@ -17,11 +20,36 @@ export default {
     ProfileData,
     ProfileDisplay
   },
+
+  methods: {
+    flipStatus() {
+      if(this.showForm == false) {
+        this.showForm = true
+      } else {
+        this.showForm = false
+      }
+    }
+  },
+
+  data() {
+    return {
+      showForm: false
+    }
+  }
 };
 </script>
 
 <style>
 body {
   justify-items: center;
+  background-color: whitesmoke;
+}
+
+#edit-profile {
+  color:skyblue
+}
+
+#edit-profile:hover {
+  color: paleturquoise
 }
 </style>

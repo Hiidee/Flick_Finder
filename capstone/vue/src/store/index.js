@@ -25,11 +25,7 @@ export default new Vuex.Store({
     swipes: [],
     browse: [],
     counter: 0,
-    userProfile: {
-      firstName: '',
-      lastName: '',
-      emailAddress: ''
-    }
+    userProfile: {}
   },
 
   mutations: {
@@ -67,6 +63,10 @@ export default new Vuex.Store({
 
     CLEAR_FAVORITES(state){
       state.favorites = [];
+    },
+
+    SAVE_PROFILE(state, profile) {
+      state.userProfile = profile;
     }
   }
 })
