@@ -56,7 +56,7 @@
                 type="checkbox"
                 id="genre6"
                 name="genre6"
-                value="Documentary"
+                value="documentary"
                 v-model="profile.favoriteGenres"
               />
               <label for="genre6">Documentary</label>
@@ -148,7 +148,7 @@
                 type="checkbox"
                 id="genre16"
                 name="genre16"
-                value="tvmobie"
+                value="tvmovie"
                 v-model="profile.favoriteGenres"
               />
               <label for="genre16">TvMovie</label>
@@ -193,13 +193,13 @@
 
 <script>
 import MovieService from "@/services/MovieService.js";
+import ProfileService from "@/services/ProfileService.js";
 
 export default {
   name: "profile-data",
   data() {
     return {
       profile: {
-        id: 0,
         user_id: 0,
         firstName: "",
         lastName: "",
@@ -215,6 +215,7 @@ export default {
   methods: {
     saveProfile() {
       this.$store.commit("SAVE_PROFILE", this.profile);
+      ProfileService.updateProfile(this.profile);
       this.profile = {};
       this.$store.commit('FLIP_PROFILE_STATUS')
     },

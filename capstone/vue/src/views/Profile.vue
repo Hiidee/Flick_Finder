@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div>
+    <div class = "profile-page">
       <div>
         <i class="fa-solid fa-pen-to-square fa-2x" id="edit-profile" @click="flipStatus"></i>
     </div>
@@ -36,16 +36,17 @@ export default {
 </script>
 
 <style>
-body {
+.profile-page{
   justify-items: center;
   background-color: whitesmoke;
+  height: 100vh;
 }
 
 #edit-profile {
-  color:skyblue
+  color:skyblue;
 }
 
 #edit-profile:hover {
-  color: paleturquoise
+  color: paleturquoise;
 }
 </style>

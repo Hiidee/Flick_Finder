@@ -4,16 +4,15 @@ const baseURL= "http://localhost:9000/profile";
 
 export default {
 
-profile() {
-    return axios.get(baseURL+'/profile')
+profile(userId) {
+    return axios.get(baseURL+`/get/${userId}`)
 },
 
-listFavorites(userID) {
-    return axios.get(baseURL+`/favorites/${userID}/`)
+createProfile(userId){
+    return axios.get(baseURL+`/create/${userId}`)
 },
 
-postFavorites(userID, favorites){
-    return axios.post(baseURL+`/favorites/save/${userID}/`,favorites)
+updateProfile(profile){
+    return axios.post(baseURL+`/update/`,profile)
 }
-
 }

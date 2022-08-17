@@ -48,6 +48,8 @@
 
 <script>
 import MovieService from "@/services/MovieService.js"
+import ProfileService from "@/services/ProfileService.js"
+
 export default {
     name: 'profile-display',
     data() {
@@ -63,6 +65,9 @@ export default {
         this.$store.commit("ADD_FAVORITE_MOVIE", movie);
         this.profile.favorites.push(movie.title)
       });
+      ProfileService.profile(this.$store.state.user.id).then((response)=>{
+        this.$store.commit("SAVE_PROFILE", response.data)
+      })
     });
     }
 }
