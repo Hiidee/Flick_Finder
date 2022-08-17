@@ -1,5 +1,5 @@
 <template>
-<main>
+<main class = "profile-main">
 
   <div class="personal-info">
       <p id="username">Username: {{$store.state.user.username}}</p>
@@ -78,6 +78,10 @@ export default {
 .favorite-genre,
 .favorite-movies {
     margin: 15px
+}
+
+.profile-main{
+height: 100vh;
 }
 
 </style>
