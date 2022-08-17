@@ -45,7 +45,8 @@ export default {
 
 <style>
 #nav,
-.banner-button {
+
+/*.banner-button {
   padding-bottom: 10;
   display: flex;
   justify-content: space-around;
@@ -62,6 +63,43 @@ export default {
 .banner-button:hover {
   background-color: white;
   color: black;
+}*/
+
+.banner-button {
+  padding-bottom: 10;
+  display: flex;
+  justify-content: space-around;
+}
+
+.banner-button {
+  justify-content: center;
+  flex-grow: 0.75;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--clr-neon);
+  cursor: pointer;
+  text-decoration: none;
+  border: currentColor 0.125em solid;
+
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var (--clr-neon), 0 0 0.5em 0 var (--clr-neon);
+
+}
+
+.banner-button::before {
+  content: "";
+  position: absolute;
+  background: var(--clr-neon);
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX (40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+
 }
 
 #nav {
@@ -70,6 +108,6 @@ export default {
 }
 
 .link {
-  color: black;
+  color: white;
 }
 </style>
