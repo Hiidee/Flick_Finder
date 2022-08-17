@@ -147,7 +147,7 @@ export default {
 
 <style >
 .browse {
-  background-color: rgb(73, 114, 139);
+  background-color: rgb(40, 45, 48);
 }
 
 .container-browse {
