@@ -187,6 +187,7 @@
   </main>
 </template>
 
+
 <script>
 import MovieService from "@/services/MovieService.js";
 
@@ -200,7 +201,6 @@ export default {
         lastName: "",
         emailAddress: "",
         favoriteGenres: [],
-        favorites: [],
       },
     };
   },
@@ -216,7 +216,7 @@ export default {
   methods: {
     saveProfile() {},
     addFavoriteMovies() {
-      MovieService.postFavorites(
+      MovieService.saveFavorites(
         this.$store.state.user.id,
         this.$store.state.favorites
       );
