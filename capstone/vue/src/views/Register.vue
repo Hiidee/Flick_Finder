@@ -42,7 +42,6 @@
 
 <script>
 import authService from '../services/AuthService';
-import ProfileService from '../services/ProfileService';
 
 export default {
   name: 'register',
@@ -73,8 +72,6 @@ export default {
                 query: { registration: 'success' },
                 
               });
-              ProfileService.createProfile(this.$store.state.user.id)
-
             }
           })
           .catch((error) => {

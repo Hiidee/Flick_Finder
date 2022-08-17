@@ -22,7 +22,7 @@
   <div class="favorite-movies">
         <h2>Favorite Movies: </h2>
          <div
-        class="browse-card"
+        class="browse-favorite"
         v-for="favorite in this.$store.state.favorites"
         v-bind:key="favorite.id"
       >
