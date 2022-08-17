@@ -35,13 +35,6 @@
           </div>
         </router-link>
       </div>
-        <!-- <div
-          class="favorite"
-          v-for="favorite in this.$store.state.favorites"
-          v-bind:key="favorite.id"
-        >
-          <div >{{favorite.title}}</div>
-        </div> -->
       </div>
 </main>
 </template>

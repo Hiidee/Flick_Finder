@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ProfileService from './ProfileService';
+
 
 export default {
 
@@ -8,7 +8,6 @@ export default {
   },
 
   register(user) {
-    ProfileService.createProfile(this.$store.state.user.id)
     return axios.post('/register', user)
   }
 
