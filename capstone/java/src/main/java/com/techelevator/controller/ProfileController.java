@@ -32,13 +32,13 @@ public class ProfileController {
     }
 
     @RequestMapping(path = "/create/{id}", method = RequestMethod.GET)
-    public boolean createProfile(@PathVariable int userId){
-        return profileDao.createProfileOnRegister(userId);
+    public boolean createProfile(@PathVariable int id){
+        return profileDao.createProfileOnRegister(id);
     }
 
     @RequestMapping(path = "/get/{id}",method = RequestMethod.GET)
-    public Profile getProfile(@PathVariable int userId){
-        return profileDao.getUserProfile(userId);
+    public Profile getProfile(@PathVariable int id){
+        return profileDao.getUserProfile(id);
     }
 
     @RequestMapping(path = "/update/", method = RequestMethod.POST)

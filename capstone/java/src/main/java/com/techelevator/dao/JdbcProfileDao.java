@@ -60,6 +60,9 @@ public class JdbcProfileDao implements ProfileDao{
         return successful;
     }
 
+    public void addGenres(Profile profile){
+
+    }
 ////////////HELPER METHODS//////////////
 
 
