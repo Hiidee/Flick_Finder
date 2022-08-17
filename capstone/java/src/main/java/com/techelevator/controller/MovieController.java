@@ -70,6 +70,12 @@ public class MovieController {
         return movies;
     }
 
+    @RequestMapping(path = "/favorites/{userId}", method = RequestMethod.GET)
+    public List<Movie> ListFavoriteMovies(@PathVariable int userId) {
+        List<Movie> favorites = dao.getFavoriteMovie(userId);
+        return favorites;
+    }
+
 
     @RequestMapping(path = "/recommendations/{userId}/", method = RequestMethod.POST)
     public List<Movie> ListRecommendedMovies(@RequestBody List<Movie> swipes,@PathVariable int userId) {
@@ -85,6 +91,11 @@ public class MovieController {
     @RequestMapping(path = "/favorites/save/{userId}/", method = RequestMethod.POST)
     public boolean addFavoriteMovies(@RequestBody List<Movie> favorited, @PathVariable int userId){
         return dao.addFavoriteMovies(userId, favorited);
+    }
+
+    @RequestMapping(path = "/add", method = RequestMethod.POST)
+    public boolean addMovieToDatabase(@RequestBody Movie movie) {
+        return dao.addMovieToDatabase(movie);
     }
 
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)

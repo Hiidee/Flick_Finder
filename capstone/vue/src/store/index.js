@@ -58,6 +58,10 @@ export default new Vuex.Store({
 
     CLEAR_SWIPES(state){
       state.swipes = [];
+    },
+
+    CLEAR_FAVORITES(state){
+      state.favorites = [];
     }
   }
 })

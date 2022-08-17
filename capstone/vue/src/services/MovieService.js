@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: "http://localhost:9000/movies"
-    
+    baseURL: "http://localhost:9000/movies",
+    // headers:{
+    //     'Authorization':`Bearer ${Token}`
+    // }
 });
 
 export default {
@@ -38,6 +40,16 @@ export default {
 
     saveFavorites(userID, favorites) {
         return http.post(`/favorites/save/${userID}/`, favorites)
+    },
+
+    listFavorites(userID) {
+        return http.get(`/favorites/${userID}/`)
+    },
+    addMovie(movie) {
+        return http.post(`/add`, movie)
     }
 
-}
+    
+       
+    }
+
