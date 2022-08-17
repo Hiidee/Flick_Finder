@@ -16,6 +16,10 @@ listFavorites(userID) {
 
 postFavorites(userID, favorites){
     return http.post(`/favorites/save/${userID}/`,favorites)
+},
+
+updateProfile(userID){
+    return http.post(`/profile/save/${userID}/`)
 }
 
 }
