@@ -11,7 +11,7 @@ profile() {
 },
 
 listFavorites(userID) {
-    return http.get(`/favorites/${userID}/`)
+    return http.get(`/favorites/save/${userID}/`)
 },
 
 postFavorites(userID, favorites){

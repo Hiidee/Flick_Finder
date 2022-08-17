@@ -9,9 +9,13 @@
     </button>
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
-        <button id = "hate" class="swipe-button" @click="hateMovie"><i class="fa-solid fa-thumbs-down fa-3x"></i></button>
-        <img class="center-poster" v-bind:src="movie.poster"/>
-        <button id = "like" class="swipe-button" @click="likeMovie"><i class="fa-solid fa-thumbs-up fa-3x"></i></button>
+        <button id="hate" class="swipe-button" @click="hateMovie">
+          <i class="fa-solid fa-thumbs-down fa-3x"></i>
+        </button>
+        <img class="center-poster" v-bind:src="movie.poster" />
+        <button id="like" class="swipe-button" @click="likeMovie">
+          <i class="fa-solid fa-thumbs-up fa-3x"></i>
+        </button>
       </div>
       <div class="media">
         <div class="media-content">
@@ -20,9 +24,10 @@
 
             <div class="title is-5">
               Directed By:
-              <div><i class="fa-solid fa-clapperboard"></i> {{ movie.director }}</div>
+              <div>
+                <i class="fa-solid fa-clapperboard"></i> {{ movie.director }}
+              </div>
             </div>
-
           </div>
 
           <div class="title is-5">
@@ -34,35 +39,45 @@
               v-bind:key="person.id"
             >
               <i class="fa-solid fa-star"></i> {{ person.name }}
-          </div>
             </div>
+          </div>
 
           <div class="title is-5">
             Genres:
-            <div class="subtitle is-6" v-for="genre in movie.genres" v-bind:key="genre.id">
+            <div
+              class="subtitle is-6"
+              v-for="genre in movie.genres"
+              v-bind:key="genre.id"
+            >
               {{ genre.name }}
             </div>
           </div>
 
-          <div class='title is-5'>Release Date: 
-            <div class="subtitle is-6"><i class="fa-solid fa-calendar-days"></i> {{movie.datePremiered}}</div>
+          <div class="title is-5">
+            Release Date:
+            <div class="subtitle is-6">
+              <i class="fa-solid fa-calendar-days"></i>
+              {{ movie.datePremiered }}
             </div>
+          </div>
 
-          <div class='title is-5'>Runtime: 
-            <div class="subtitle is-6"><i class="fa-solid fa-clock"></i> {{movie.runtime}} minutes</div>
+          <div class="title is-5">
+            Runtime:
+            <div class="subtitle is-6">
+              <i class="fa-solid fa-clock"></i> {{ movie.runtime }} minutes
             </div>
+          </div>
         </div>
 
-      
-      <div class="overview">
-        <p id="overview-header" class="title is-4">Overview:</p>
-        <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
-        <button class="favorite-button title is-6" @click="addFavoriteMovie">
-          Add to Favorites
-        </button>
+        <div class="overview">
+          <p id="overview-header" class="title is-4">Overview:</p>
+          <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
+          <button class="favorite-button title is-6" @click="addFavoriteMovie">
+            Add to Favorites
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -127,7 +142,6 @@ export default {
 </script>
 
 <style>
-
 .container {
   margin-top: 30px;
   margin-bottom: 14px;
@@ -158,7 +172,7 @@ export default {
   align-items: space-between;
 }
 
-.left-header{
+.left-header {
   margin-bottom: 20px;
 }
 
@@ -217,25 +231,26 @@ export default {
   width: 200px;
 }
 
-#like,#hate,.fa-thumbs-up,.fa-thumbs-down{
-  color:transparent;
+#like,
+#hate,
+.fa-thumbs-up,
+.fa-thumbs-down {
+  color: transparent;
   background-color: transparent;
   border: none;
-
 }
 
-#like:hover,#hate:hover{
+#like:hover,
+#hate:hover {
   background-color: darkgrey;
   opacity: 25%;
 }
 
-#like:hover>.fa-thumbs-up, #hate:hover>.fa-thumbs-down{
+#like:hover > .fa-thumbs-up,
+#hate:hover > .fa-thumbs-down {
   color: black;
   opacity: 100%;
 }
-
-
-
 
 @media (max-width: 700px) {
   .card {

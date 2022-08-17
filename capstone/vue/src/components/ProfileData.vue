@@ -205,16 +205,16 @@ export default {
     };
   },
   created() {
-    ProfileService.listFavorites(this.$store.state.currentUser.id);
+    ProfileService.listFavorites(this.$store.state.user.id);
   },
 
   methods: {
-    addFavoriteMovies() {
-      ProfileService.postFavorites(
-        this.$store.state.user.id,
-        this.$store.state.favorites
-      );
-    },
+    // addFavoriteMovies() {
+    //   ProfileService.postFavorites(
+    //     this.$store.state.user.id,
+    //     this.$store.state.favorites
+    //   );
+    // },
   },
 };
 </script>

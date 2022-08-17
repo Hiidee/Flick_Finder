@@ -1,6 +1,6 @@
 <template>
   <div class = "footer">
-    <p>woooooooords 2022</p>
+    <p class="footer-info">woooooooords 2022</p>
   </div>
 </template>
 
@@ -11,6 +11,15 @@ export default {
 </script>
 
 <style>
-.footer{background-color: darkblue;}
-
+.footer {
+  background-color: rgb(37, 37, 110);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  }
+.footer-info {
+  text-align: center;
+  color: limegreen;
+}
 </style>
