@@ -1,25 +1,19 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "http://localhost:9000/profile"
-});
+const baseURL= "http://localhost:9000/profile";
 
 export default {
 
 profile() {
-    return http.get('/profile')
+    return axios.get(baseURL+'/profile')
 },
 
 listFavorites(userID) {
-    return http.get(`/favorites/${userID}/`)
+    return axios.get(baseURL+`/favorites/${userID}/`)
 },
 
 postFavorites(userID, favorites){
-    return http.post(`/favorites/save/${userID}/`,favorites)
-},
-
-updateProfile(userID){
-    return http.post(`/profile/save/${userID}/`)
+    return axios.post(baseURL+`/favorites/save/${userID}/`,favorites)
 }
 
 }
