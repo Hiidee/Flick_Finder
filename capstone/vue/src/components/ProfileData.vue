@@ -216,7 +216,7 @@ export default {
   methods: {
     saveProfile() {},
     addFavoriteMovies() {
-      MovieService.postFavorites(
+      MovieService.saveFavorites(
         this.$store.state.user.id,
         this.$store.state.favorites
       );
