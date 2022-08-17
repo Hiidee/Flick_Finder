@@ -44,7 +44,11 @@
 
           <div class="title is-5">
             Genres:
-            <div class="subtitle is-6" v-for="genre in movie.genres" v-bind:key="genre.id">
+            <div
+              class="subtitle is-6"
+              v-for="genre in movie.genres"
+              v-bind:key="genre.id"
+            >
               <i class="fa-solid fa-film"></i> {{ genre.name }}
             </div>
           </div>
@@ -65,17 +69,18 @@
           </div>
         </div>
 
-      
-      <div class="overview">
-        <p id="overview-header" class="title is-4">Overview:</p>
-        <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
+        <div class="overview">
+          <p id="overview-header" class="title is-4">Overview:</p>
+          <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
 
           <div class="favorite-button">
-          <i class="fa-solid fa-heart-circle-plus fa-3x favorite-button" @click="addFavoriteMovie"></i>
-          <div class="subtitle is-4 favorite-label">Favorite</div>
+            <i
+              class="fa-solid fa-heart-circle-plus fa-3x favorite-button"
+              @click="addFavoriteMovie"
+            ></i>
+            <div class="subtitle is-4 favorite-label">Favorite</div>
           </div>
-           
-
+        </div>
       </div>
     </div>
   </div>
@@ -216,12 +221,12 @@ export default {
 
 .favorite-label {
   margin: 20px 5px 20px 160px;
-  color: paleturquoise
+  color: paleturquoise;
 }
 
-.favorite-label:hover, .favorite-button:hover {
-  color:palevioletred
-
+.favorite-label:hover,
+.favorite-button:hover {
+  color: palevioletred;
 }
 
 .start {

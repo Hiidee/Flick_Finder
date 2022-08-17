@@ -1,17 +1,13 @@
 <template>
-  <movies-browse/>
+  <movies-browse />
 </template>
 
 <script>
 import MoviesBrowse from "@/components/MoviesBrowse.vue";
 
 export default {
-components:{
-  MoviesBrowse,
-}
-}
+  components: {
+    MoviesBrowse,
+  },
+};
 </script>
-
-<style>
-
-</style>

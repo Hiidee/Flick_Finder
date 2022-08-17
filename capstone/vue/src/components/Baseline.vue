@@ -10,11 +10,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .footer {
   background-color: rgb(37, 37, 110);
   position: absolute;
-  bottom: 0;
   width: 100%;
   height: 2.5rem;
   }

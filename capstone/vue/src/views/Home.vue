@@ -12,7 +12,7 @@
           movies, and based on those selections, get recommendations?
           <br>
           <br />
-          <strong>Now there is!!!</strong>
+          <strong>Now there is!</strong>
           <br>
           <br />
           With Flick Finder, your swipes help determine what you may be in the mood for. The powerful
@@ -21,7 +21,7 @@
           flicks. 
           <br>
           <br />
-          What are you waiting for? Go flick some flicks!!
+          Its like Tinder... For movies!
         </p>
       </div>
     </div>

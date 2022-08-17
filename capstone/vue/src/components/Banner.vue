@@ -65,7 +65,7 @@ export default {
 }
 
 #nav {
-  background-color: darkblue;
+  background-color: rgb(37, 37, 110);
   padding: 20px;
 }
 
