@@ -1,7 +1,7 @@
 <template>
-<div>
-  <movie-card></movie-card>
-  </div>
+<div class = "movie-card-view">
+  <movie-card class = "flick"></movie-card>
+</div>
 </template>
 
 <script>
@@ -16,4 +16,8 @@ export default {
 </script>
 
 <style>
+.movie-card-view{
+display:flex;
+flex-grow:1;
+}
 </style>

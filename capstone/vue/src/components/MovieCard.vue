@@ -280,6 +280,8 @@ export default {
   height: 50vh;
   width: 50%;
   margin: auto;
+  margin-top:10vh;
+  margin-bottom:10vh;
   font-size: 500%;
 }
 .button-85:before {

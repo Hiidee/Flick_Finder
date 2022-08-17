@@ -164,4 +164,5 @@ export default {
 .card-poster {
   width: 225px;
 }
+
 </style>
