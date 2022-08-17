@@ -19,6 +19,6 @@ export default {
   }
 .footer-info {
   text-align: center;
-  color: limegreen;
+  color: rgb(173, 186, 187);
 }
 </style>

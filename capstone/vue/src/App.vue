@@ -28,5 +28,6 @@ export default {
 #app {
   background: linear-gradient(0deg, #0C090A, #52595D 40%, #262a30);
   height: 100vh;
+  color: rgb(184, 207, 209);
 }
 </style>
