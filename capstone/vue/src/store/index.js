@@ -25,7 +25,8 @@ export default new Vuex.Store({
     swipes: [],
     browse: [],
     counter: 0,
-    userProfile: {}
+    userProfile: {},
+    showProfile: false
   },
 
   mutations: {
@@ -67,6 +68,13 @@ export default new Vuex.Store({
 
     SAVE_PROFILE(state, profile) {
       state.userProfile = profile;
+    },
+    FLIP_PROFILE_STATUS(state) {
+      if (state.showProfile == false) {
+        state.showProfile = true
+      } else {
+        state.showProfile = false
+      }
     }
   }
 })

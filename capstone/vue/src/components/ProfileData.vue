@@ -184,8 +184,9 @@
       </form>
 
     </div>
+      <router-link class="to-display-view" v-bind:to="{name: 'profile-display'}">
           <button v-on:click.prevent="saveProfile">Save</button>
-
+      </router-link>
   </main>
 </template>
 
@@ -216,6 +217,7 @@ export default {
       this.$store.commit("SAVE_PROFILE", this.profile);
       ProfileService.updateProfile(this.profile);
       this.profile = {};
+      this.$store.commit('FLIP_PROFILE_STATUS')
     },
 
     addFavoriteMovies() {

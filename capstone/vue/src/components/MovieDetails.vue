@@ -84,9 +84,16 @@ export default {
   },
   computed: {
     movie() {
-      return this.$store.state.browse.find((m) => {
+      let movie = this.$store.state.browse.find((m) => {
         return m.id == this.$route.params.id;
       });
+      if(movie==undefined){
+        movie = this.$store.state.favorites.find((m)=> {
+          return m.id == this.$route.params.id;
+        })
+      }
+
+      return movie;
     },
   },
 };

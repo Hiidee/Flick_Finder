@@ -7,7 +7,7 @@
       <p id="last-name">Last Name: {{$store.state.userProfile.lastName}}</p>
       <p id="email-address">Email Address: {{$store.state.userProfile.emailAddress}}</p>
   </div>
-
+    
   <div class="favorite-genre">
       <h2>Favorite Genres: </h2>
       <div 
@@ -21,13 +21,27 @@
 
   <div class="favorite-movies">
         <h2>Favorite Movies: </h2>
-        <div
+         <div
+        class="browse-card"
+        v-for="favorite in this.$store.state.favorites"
+        v-bind:key="favorite.id"
+      >
+        <router-link
+          class="to-movie-details"
+          v-bind:to="{ name: 'movie-detail', params: { id: favorite.id } }"
+        >
+          <div class="card-container">
+            <img class="card-poster" v-bind:src="favorite.poster" />
+          </div>
+        </router-link>
+      </div>
+        <!-- <div
           class="favorite"
           v-for="favorite in this.$store.state.favorites"
           v-bind:key="favorite.id"
         >
           <div >{{favorite.title}}</div>
-        </div>
+        </div> -->
       </div>
 </main>
 </template>
@@ -60,7 +74,17 @@ export default {
 </script>
 
 <style>
-  p {
-    color: rgb(173, 186, 187);
-  }
+
+#username, 
+#first-name, 
+#last-name, 
+#email-address {
+    margin: 15px
+}
+
+.favorite-genre,
+.favorite-movies {
+    margin: 15px
+}
+
 </style>
