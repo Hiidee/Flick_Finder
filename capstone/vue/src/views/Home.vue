@@ -65,6 +65,7 @@ strong {
 }
 
 .home{
-  height:100vh;
+display:flex;
+height:100vh;
 }
 </style>
