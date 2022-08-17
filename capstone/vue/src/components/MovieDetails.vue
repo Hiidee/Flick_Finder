@@ -33,7 +33,7 @@
             v-for="genre in movie.genres"
             v-bind:key="genre.id"
           >
-            {{ genre.name }}
+           <i class="fa-solid fa-film"></i> {{ genre.name }}
           </div>
         </div>
 
