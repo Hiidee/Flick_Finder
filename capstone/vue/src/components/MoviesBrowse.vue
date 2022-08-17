@@ -58,7 +58,7 @@
           class="to-movie-details"
           v-bind:to="{ name: 'movie-detail', params: { id: movie.id } }"
         >
-          <div class="card-container">
+          <div class="card-container">  
             <img class="card-poster" v-bind:src="movie.poster" />
           </div>
         </router-link>

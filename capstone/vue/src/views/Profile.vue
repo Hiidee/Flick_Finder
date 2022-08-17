@@ -4,8 +4,8 @@
       <div>
         <i class="fa-solid fa-pen-to-square fa-2x" id="edit-profile" @click="flipStatus"></i>
     </div>
-      <profile-display v-if="!showForm"></profile-display>
-      <profile-data v-if="showForm"></profile-data>
+      <profile-display v-if="!$store.state.showProfile"></profile-display>
+      <profile-data v-if="$store.state.showProfile"></profile-data>
     </div>
   </body>
 </template>
@@ -23,11 +23,7 @@ export default {
 
   methods: {
     flipStatus() {
-      if(this.showForm == false) {
-        this.showForm = true
-      } else {
-        this.showForm = false
-      }
+      this.$store.commit('FLIP_PROFILE_STATUS')
     }
   },
 
