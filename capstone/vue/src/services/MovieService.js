@@ -1,52 +1,47 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "http://localhost:9000/movies",
-    // headers:{
-    //     'Authorization':`Bearer ${Token}`
-    // }
-});
+const baseURL = "http://localhost:9000/movies";
 
 export default {
 
     
     flickfinder() {
-        return http.get('/flickFinder');
+        return axios.get(baseURL+'/flickFinder');
     },
 
     listByActor(personID) {
-        return http.get(`/actor/${personID}`);
+        return axios.get(baseURL+`/actor/${personID}`);
     },
 
     listByGenre(genreName) {
-        return http.get(`/genre/${genreName}`);
+        return axios.get(baseURL+`/genre/${genreName}`);
     },
 
     listByDirector(directorName) {
-        return http.get(`/director/${directorName}`)
+        return axios.get(baseURL+`/director/${directorName}`)
     },
 
     listByTitle(title) {
-        return http.get(`/title/${title}`)
+        return axios.get(baseURL+`/title/${title}`)
     },
 
     listRandom() {
-        return http.get(`/random`)
+        return axios.get(baseURL+`/random`)
     },
 
     listRecommendations(userID, swipes) {
-        return http.post(`/recommendations/${userID}/`, swipes)
+        return axios.post(baseURL+`/recommendations/${userID}/`, swipes)
     },
 
     saveFavorites(userID, favorites) {
-        return http.post(`/favorites/save/${userID}/`, favorites)
+        return axios.post(baseURL+`/favorites/save/${userID}/`, favorites)
     },
 
     listFavorites(userID) {
-        return http.get(`/favorites/${userID}/`)
+        return axios.get(baseURL+`/favorites/${userID}/`)
     },
     addMovie(movie) {
-        return http.post(`/add`, movie)
+        return axios.post(baseURL+`/add`, movie)
     }
 
     
