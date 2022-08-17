@@ -63,4 +63,8 @@ strong {
 .container {
   opacity: 2;
 }
+
+.home{
+  height:100vh;
+}
 </style>
