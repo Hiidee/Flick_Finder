@@ -19,11 +19,11 @@
       
   </div>
 
+    <h2>Favorite Movies: </h2>
   <div class="favorite-movies">
-        <h2>Favorite Movies: </h2>
          <div
         class="browse-card"
-        v-for="favorite in this.$store.state.favorites"
+        v-for="favorite in localFavorites"
         v-bind:key="favorite.id"
       >
         <router-link
@@ -47,6 +47,7 @@ export default {
     name: 'profile-display',
     data() {
         return {
+            localFavorites: []
             
         }
 
@@ -55,18 +56,27 @@ export default {
     created() {
         MovieService.listFavorites(this.$store.state.user.id).then( (response) => {
       response.data.forEach(movie => { 
-        this.$store.commit("ADD_FAVORITE_MOVIE", movie);
-        this.profile.favorites.push(movie.title)
+        // this.$store.commit("ADD_FAVORITE_MOVIE", movie);
+        // this.profile.favorites.push(movie.title)
+        this.localFavorites.push(movie)
       });
       ProfileService.profile(this.$store.state.user.id).then((response)=>{
         this.$store.commit("SAVE_PROFILE", response.data)
       })
     });
+    
     }
 }
 </script>
 
 <style>
+
+.favorite-movies {
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+    
+}
 
 #username, 
 #first-name, 
