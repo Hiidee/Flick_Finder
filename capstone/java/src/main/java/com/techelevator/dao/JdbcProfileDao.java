@@ -19,6 +19,12 @@ public class JdbcProfileDao implements ProfileDao{
     }
 
     public boolean createProfileOnRegister(int userId){
+        String checkQuery = "SELECT * FROM profile WHERE user_id = ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(checkQuery, userId);
+        if(rowSet.next()){
+            return false;
+        }
+
         String sql = "INSERT INTO profile (user_id,first_name,last_name,email)\n"+
                 "VALUES (?,'','','');";
         try{
