@@ -43,6 +43,7 @@ export default {
 .profile-page{
   justify-items: center;
   background-color: whitesmoke;
+  height: 100vh;
 }
 
 #edit-profile {
