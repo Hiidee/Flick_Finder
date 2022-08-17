@@ -41,8 +41,8 @@ public class ProfileController {
         return profileDao.getUserProfile(userId);
     }
 
-    @RequestMapping(path = "/update/{id}", method = RequestMethod.POST)
-    public boolean updateProfile(@RequestBody Profile profile, @PathVariable int userId){
+    @RequestMapping(path = "/update/", method = RequestMethod.POST)
+    public boolean updateProfile(@RequestBody Profile profile){
         return profileDao.updateUserProfile(profile);
     }
 }

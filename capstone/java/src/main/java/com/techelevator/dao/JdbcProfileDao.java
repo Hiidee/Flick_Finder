@@ -51,7 +51,7 @@ public class JdbcProfileDao implements ProfileDao{
         String sql = "UPDATE profile SET email = ?, first_name = ?, last_name = ? WHERE user_id = ?;";
         boolean successful;
         try{
-            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, profile.getEmailAddress(), profile.getFirstname(), profile.getLastname(), profile.getUserId());
+            jdbcTemplate.update(sql, profile.getEmailAddress(), profile.getFirstname(), profile.getLastname(), profile.getUserId());
             successful=true;
         }catch (Exception e){
             e.printStackTrace();
