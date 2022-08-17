@@ -25,6 +25,11 @@ export default new Vuex.Store({
     swipes: [],
     browse: [],
     counter: 0,
+    userProfile: {
+      firstName: '',
+      lastName: '',
+      emailAddress: ''
+    }
   },
 
   mutations: {

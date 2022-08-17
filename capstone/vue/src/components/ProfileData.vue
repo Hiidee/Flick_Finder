@@ -187,6 +187,7 @@
   </main>
 </template>
 
+
 <script>
 import MovieService from "@/services/MovieService.js";
 
@@ -200,7 +201,6 @@ export default {
         lastName: "",
         emailAddress: "",
         favoriteGenres: [],
-        favorites: [],
       },
     };
   },
