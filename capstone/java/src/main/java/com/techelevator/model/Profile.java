@@ -5,9 +5,9 @@ import java.util.List;
 public class Profile {
 
     private int profileId;
-    private int userId;
-    private String firstname;
-    private String lastname;
+    private int user_id;
+    private String firstName;
+    private String lastName;
     private String emailAddress;
     private List<String> favoriteGenres;
     private List<Movie> favoriteMovies;
@@ -20,20 +20,20 @@ public class Profile {
         this.profileId = profileId;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmailAddress() {
@@ -60,11 +60,11 @@ public class Profile {
         this.favoriteMovies = favoriteMovies;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

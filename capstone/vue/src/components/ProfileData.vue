@@ -184,7 +184,7 @@
       </form>
 
     </div>
-      <button v-on:click.prevent="saveProfile">Save</button>
+      <button v-on:click="saveProfile">Save</button>
   </main>
 </template>
 
@@ -212,7 +212,6 @@ export default {
 
   methods: {
     saveProfile() {
-      this.$store.commit("SAVE_PROFILE", this.profile);
       ProfileService.updateProfile(this.profile);
       this.profile = {};
       this.$store.commit('FLIP_PROFILE_STATUS')
