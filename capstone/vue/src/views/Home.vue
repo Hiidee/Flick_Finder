@@ -30,6 +30,9 @@
           </p>
         </div>
       </div>
+      <!-- <div class="favorites-container">
+        <p>movies will be here to scroll through</p>
+      </div> -->
     </div>
   </body>
 </template>
@@ -59,13 +62,17 @@ strong {
   font-weight: bold;
   -webkit-text-stroke: 0.6px black;
 }
-
+/* div.favorites-container {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+} */
 .container {
   opacity: 2;
 }
 
-.home{
-display:flex;
-height:100vh;
+.home {
+  display: flex;
+  height: 100vh;
 }
 </style>
