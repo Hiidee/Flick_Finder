@@ -109,6 +109,12 @@ div.favorites-container::-webkit-scrollbar {
   height : 35vh;
 }
 
+#about{
+  background: black;
+  padding: 20px;
+  border-radius:10px;
+}
+
 .favorites-wheel{
   
   color:white;
