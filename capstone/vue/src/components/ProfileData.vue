@@ -208,6 +208,9 @@ export default {
   },
   created() {
     this.profile.user_id = this.$store.state.user.id;
+    ProfileService.profile(this.$store.state.user.id).then((response)=>{
+      this.profile = response.data;
+    })
   },
 
   methods: {

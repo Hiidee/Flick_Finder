@@ -36,7 +36,8 @@ export default {
         this.$store.state.user.id,
         this.$store.state.favorites
       ).then((response) => {
-        this.$store.commit(response.data);
+        this.$store.commit("CLEAR_FAVORITES");
+        return response;
       });
     },
   },
