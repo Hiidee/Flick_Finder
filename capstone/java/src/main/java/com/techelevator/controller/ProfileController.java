@@ -18,7 +18,7 @@ import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
 @RestController
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 @RequestMapping("/profile")
 public class ProfileController {
@@ -45,5 +45,7 @@ public class ProfileController {
     public boolean updateProfile(@RequestBody Profile profile){
         return profileDao.updateUserProfile(profile);
     }
+
+
 }
 

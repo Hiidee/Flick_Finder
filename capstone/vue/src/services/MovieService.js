@@ -42,6 +42,9 @@ export default {
     },
     addMovie(movie) {
         return axios.post(baseURL+`/add`, movie)
+    },
+    displayHomeMovies(){
+        return axios.get(baseURL+"/compiled")
     }
 
     
