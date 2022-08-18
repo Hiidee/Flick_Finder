@@ -27,12 +27,26 @@
             <br />
             <br />
             <strong>It's like Tinder... For movies!</strong>
+            <br />
+            <br />
           </p>
+          <div class="favorites-container">
+            <a href="#movie1">Movie 1</a>
+            <a href="#movie2">Movie 2</a>
+            <a href="#movie3">Movie 3</a>
+            <a href="#movie4">Movie 4</a>
+            <a href="#movie5">Movie 5</a>
+            <a href="#movie6">Movie 6</a>
+            <a href="#movie7">Movie 7</a>
+            <a href="#movie8">Movie 8</a>
+            <a href="#movie9">Movie 9</a>
+            <a href="#movie10">Movie 10</a>
+            <a href="#movie11">Movie 11</a>
+            <a href="#movie12">Movie 12</a>
+            <a href="#movie13">Movie 13</a>
+          </div>
         </div>
       </div>
-      <!-- <div class="favorites-container">
-        <p>movies will be here to scroll through</p>
-      </div> -->
     </div>
   </body>
 </template>
@@ -62,15 +76,25 @@ strong {
   font-weight: bold;
   -webkit-text-stroke: 0.6px black;
 }
-/* div.favorites-container {
+div.favorites-container {
   background-color: #333;
   overflow: auto;
   white-space: nowrap;
-} */
+  max-width: 70%;
+}
+div.favorites-container a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+div.favorites-container a:hover {
+  background-color: #777;
+}
 .container {
   opacity: 2;
 }
-
 .home {
   display: flex;
   height: 100vh;
