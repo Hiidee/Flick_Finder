@@ -251,7 +251,6 @@ public class JdbcMovieDao implements MovieDao {
             }
             for(int movieId : userFavorites) {
                 String sql = "INSERT INTO movie_favorite (user_id, movie_id) VALUES(?, ?)";
-
                 jdbcTemplate.update(sql, userId, movieId);
             }
             return true;
