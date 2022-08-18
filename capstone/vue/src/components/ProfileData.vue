@@ -184,9 +184,7 @@
       </form>
 
     </div>
-      <router-link class="to-display-view" v-bind:to="{name: 'profile-display'}">
-          <button v-on:click.prevent="saveProfile">Save</button>
-      </router-link>
+      <button v-on:click.prevent="saveProfile">Save</button>
   </main>
 </template>
 

@@ -19,7 +19,7 @@
         ><div class="banner-button" v-if="$store.state.token != ''">
           Logout
         </div></router-link
-      >
+        >
     </div>
   </header>
 </template>
