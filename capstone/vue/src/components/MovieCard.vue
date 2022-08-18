@@ -1,6 +1,13 @@
 <template>
   <div class="container">
-    <button class="button-85" @click="getRecommendations" v-if="this.$store.state.recommendations.length < 1" role="button">Start Swiping</button>
+    <button
+      class="button-85"
+      @click="getRecommendations"
+      v-if="this.$store.state.recommendations.length < 1"
+      role="button"
+    >
+      Start Swiping
+    </button>
     <div class="card" v-if="this.$store.state.recommendations.length > 0">
       <div class="img-buttons">
         <button id="hate" class="swipe-button" @click="hateMovie">
@@ -38,12 +45,14 @@
 
           <div class="title is-5">
             Genres:
+            <div class = "genre-container">
             <div
               class="subtitle is-6"
               v-for="genre in movie.genres"
               v-bind:key="genre.id"
             >
               <i class="fa-solid fa-film"></i> {{ genre.name }}
+            </div>
             </div>
           </div>
 
@@ -64,12 +73,21 @@
         </div>
 
         <div class="overview">
-          <p id="overview-header" class="title is-4">Overview:</p>
-          <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
-           <div class = "review container" v-for="review in ratings" v-bind:key ="review.Source">
-        <p>{{review.Source}}: {{review.Value}}</p>
-      </div>
-
+          <div class="overview-rating">
+            <div class="synopsis">
+            <p id="overview-header" class="title is-4">Overview:</p>
+            <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
+            </div>
+            <div class = "review-container">
+            <div
+              class="review"
+              v-for="review in ratings"
+              v-bind:key="review.Source"
+            >
+              <p>{{ review.Source }}: {{ review.Value }}</p>
+            </div>
+          </div>
+          </div>
           <div class="favorite-button">
             <i
               class="fa-solid fa-heart-circle-plus fa-3x favorite-button"
@@ -104,16 +122,16 @@ export default {
         actors: [],
       },
       i: 0,
-      ratings:[],
+      ratings: [],
     };
   },
   computed: {},
   created() {
     this.movie = this.$store.state.recommendations[this.i];
     OMDBService.getRatings(this.movie.title).then((response) => {
-        console.log(response.data);
-        this.ratings = response.data.Ratings;
-      });
+      console.log(response.data);
+      this.ratings = response.data.Ratings;
+    });
   },
   methods: {
     likeMovie() {
@@ -197,16 +215,27 @@ export default {
   margin-right: 5px;
 }
 
+.genre-container{
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .overview {
   grid-area: overview;
   margin-right: 15px;
   margin-top: 20px;
-  display: flex;
-  align-content: space-between;
-  flex-direction: column;
 }
 
-#overview-header {
+.overview-rating {
+  display: flex;
+  direction:row;
+  justify-content: space-evenly;
+}
+
+.synopsis{
+  display: flex;
+  flex-direction: column;
+  width:40vh;
 }
 
 .overview-item {
@@ -216,6 +245,19 @@ export default {
   border-radius: 5px;
   padding: 5px;
   flex-grow: 1;
+}
+
+.review-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left:10px;
+}
+
+.review{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .favorite-button {
@@ -241,6 +283,7 @@ export default {
 
 .img-buttons {
   justify-content: center;
+  width: 100vh;
 }
 
 .center-poster {
@@ -278,7 +321,7 @@ export default {
   border: none;
   outline: none;
   color: rgb(255, 255, 255);
-  background:black;
+  background: black;
   cursor: pointer;
   position: relative;
   z-index: 0;
@@ -289,8 +332,8 @@ export default {
   height: 50vh;
   width: 50%;
   margin: auto;
-  margin-top:10vh;
-  margin-bottom:10vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
   font-size: 500%;
   display: flex;
   align-content: center;
@@ -300,15 +343,15 @@ export default {
   content: "";
   background: linear-gradient(
     45deg,
-    #FF0000,
-    #FF7300,
-    #FFFB00,
-    #48FF00,
-    #00FFD5,
-    #002BFF,
-    #7A00FF,
-    #FF00C8,
-    #FF0000
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
   );
   position: absolute;
   top: -2px;
@@ -345,7 +388,6 @@ export default {
   top: 0;
   border-radius: 10px;
 }
-
 
 @media (max-width: 700px) {
   .card {
