@@ -1,6 +1,7 @@
 <template>
 <main class = "profile-main">
-
+<div class = "profile-container">
+  <div class = "info-container">
   <div class="personal-info">
       <p id="username">Username: {{$store.state.user.username}}</p>
       <p id="first-name">First Name: {{localProfile.firstName}}</p>
@@ -18,8 +19,9 @@
       </div>
       
   </div>
-
-    <h2 id="favorite-movies">Favorite Movies: </h2>
+  </div>
+<div class = "favorite-container">
+          <h2 id="favorite-movies">Favorite Movies: </h2>
   <div class="favorite-movies">
          <div
         class="browse-card"
@@ -36,6 +38,8 @@
         </router-link>
       </div>
       </div>
+</div>
+</div>
 </main>
 </template>
 
@@ -82,11 +86,13 @@ export default {
 
 <style>
 
+.favorite-container{
+}
+
 .favorite-movies {
     display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-    
 }
 
 #favorite-movies,
@@ -97,13 +103,29 @@ export default {
     margin: 15px
 }
 
-.favorite-genre,
-.favorite-movies {
-    margin: 15px
+.favorite-genre {
+    margin: 15px;
+    width:40vh;
+    border: black;
+    border-style: solid;
+    padding: 10px;
+}
+
+.info-container{
+  display: flex;
+}
+
+.personal-info{
+
 }
 
 .profile-main{
 height: 100vh;
+}
+
+.profile-container{
+  display:flex;
+  flex-direction:row;
 }
 
 </style>

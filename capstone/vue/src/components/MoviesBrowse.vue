@@ -165,4 +165,12 @@ export default {
   width: 225px;
 }
 
+.searchbar{
+  color:red;
+  margin:5vh;
+  background: white;
+  border-radius:5px;
+  padding:10px;
+}
+
 </style>
