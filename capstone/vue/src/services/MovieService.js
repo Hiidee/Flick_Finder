@@ -9,6 +9,10 @@ export default {
         return axios.get(baseURL+'/flickFinder');
     },
 
+    listById(movieID) {
+        return axios.get(baseURL+`/${movieID}`)
+    },
+
     listByActor(personID) {
         return axios.get(baseURL+`/actor/${personID}`);
     },
@@ -40,6 +44,7 @@ export default {
     listFavorites(userID) {
         return axios.get(baseURL+`/favorites/${userID}/`)
     },
+
     addMovie(movie) {
         return axios.post(baseURL+`/add`, movie)
     },
