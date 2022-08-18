@@ -8,7 +8,7 @@ public class Profile {
     private int user_id;
     private String firstName;
     private String lastName;
-    private String emailAddress;
+    private String email;
     private List<String> favoriteGenres;
     private List<Movie> favoriteMovies;
 
@@ -37,11 +37,11 @@ public class Profile {
     }
 
     public String getEmailAddress() {
-        return emailAddress;
+        return email;
     }
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+        this.email = emailAddress;
     }
 
     public List<String> getFavoriteGenres() {
