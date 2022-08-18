@@ -4,7 +4,6 @@ import com.techelevator.model.Movie;
 import com.techelevator.model.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class JdbcProfileDao implements ProfileDao{
         String sql = "UPDATE profile SET email = ?, first_name = ?, last_name = ? WHERE user_id = ?;";
         boolean successful;
         try{
-            jdbcTemplate.update(sql, profile.getEmailAddress(), profile.getFirstname(), profile.getLastname(), profile.getUserId());
+            jdbcTemplate.update(sql, profile.getEmailAddress(), profile.getFirstName(), profile.getLastName(), profile.getUser_id());
             successful=true;
         }catch (Exception e){
             e.printStackTrace();
@@ -102,8 +101,8 @@ public class JdbcProfileDao implements ProfileDao{
     private Profile mapRowToProfile(SqlRowSet rowSet){
         Profile profile= new Profile();
 
-        profile.setFirstname(rowSet.getString("first_name"));
-        profile.setLastname(rowSet.getString("last_name"));
+        profile.setFirstName(rowSet.getString("first_name"));
+        profile.setLastName(rowSet.getString("last_name"));
         profile.setEmailAddress(rowSet.getString("email"));
 
         return profile;
