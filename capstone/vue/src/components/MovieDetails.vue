@@ -33,14 +33,15 @@
             v-for="genre in localMovie.genres"
             v-bind:key="genre.id"
           >
-           <i class="fa-solid fa-film"></i> {{ genre.name }}
+            <i class="fa-solid fa-film"></i> {{ genre.name }}
           </div>
         </div>
 
         <div class="title is-5">
           Release Date:
           <div class="subtitle is-6">
-            <i class="fa-solid fa-calendar-days"></i> {{ localMovie.datePremiered }}
+            <i class="fa-solid fa-calendar-days"></i>
+            {{ localMovie.datePremiered }}
           </div>
         </div>
 
@@ -56,13 +57,19 @@
       <p id="overview-header" class="title is-4">Overview:</p>
       <p class="overview-item subtitle is-5">{{ localMovie.overview }}</p>
 
+      <div class = "review container" v-for="review in ratings" v-bind:key ="review.Source">
+        <p>{{review.Source}}: {{review.Value}}</p>
+      </div>
+
+
+
       <div class="favorite-button">
-            <i
-              class="fa-solid fa-heart-circle-plus fa-3x favorite-button"
-              @click="addFavoriteMovie"
-            ></i>
-            <div class="subtitle is-4 favorite-label">Favorite</div>
-          </div>
+        <i
+          class="fa-solid fa-heart-circle-plus fa-3x favorite-button"
+          @click="addFavoriteMovie"
+        ></i>
+        <div class="subtitle is-4 favorite-label">Favorite</div>
+      </div>
 
       <!-- <button class="favorite-button title is-6" @click="addFavoriteMovie" v-if="favorite===false">
         Add to Favorites
@@ -70,46 +77,49 @@
       <button class="favorite-button title is-6" @click="removeFavoriteMovie" v-if="favorite===true">
         Remove from Favorites
       </button> -->
-
-
     </div>
   </div>
 </template>
 
 <script>
-import MovieService from '@/services/MovieService.js'
-
+import MovieService from "@/services/MovieService.js";
+import OMDBService from "@/services/OMDBService.js";
 export default {
-    data(){
-        return{
-            favorite: false,
-            localMovie: {
-              id: 0,
-              title: "",
-              overview: "",
-              genre: [],
-              poster: "",
-              director: "",
-              runtime: 0,
-              datePremiered: "",
-              actors: [],
+  data() {
+    return {
+      favorite: false,
+      localMovie: {
+        id: 0,
+        title: "",
+        overview: "",
+        genre: [],
+        poster: "",
+        director: "",
+        runtime: 0,
+        datePremiered: "",
+        actors: [],
       },
-        }
-    },
+      ratings: [],
+    };
+  },
   methods: {
     addFavoriteMovie() {
       this.$store.commit("ADD_FAVORITE_MOVIE", this.localMovie);
-      this.favorite=true;
+      this.favorite = true;
     },
-    removeFavoriteMovie(){
-        this.$store.commit("REMOVE_FAVORITE_MOVIE", this.localMovie);
-        this.favorite=false;
-    }
+    removeFavoriteMovie() {
+      this.$store.commit("REMOVE_FAVORITE_MOVIE", this.localMovie);
+      this.favorite = false;
+    },
   },
   created() {
-      MovieService.listById(this.$route.params.id).then((response) => {
-        this.localMovie = response.data
-      });   
+    MovieService.listById(this.$route.params.id).then((response) => {
+      this.localMovie = response.data;
+      OMDBService.getRatings(this.localMovie.title).then((response) => {
+        console.log(response.data);
+        this.ratings = response.data.Ratings;
+      });
+    });
   },
 };
 </script>
@@ -134,5 +144,4 @@ export default {
     align-content: space-around;
   }
 }
-
 </style>
