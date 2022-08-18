@@ -5,6 +5,7 @@ import com.techelevator.model.Movie;
 import java.util.List;
 
 public interface MovieDao {
+    public Movie getMovieById(int id);
 
     public List<Movie> getRandomMovie(int limit);
 
@@ -27,6 +28,8 @@ public interface MovieDao {
     public boolean addFavoriteMovies(int userId, List<Movie> favorited);
 
     public List<Movie> getFavoriteMovie (int id);
+
     public boolean addMovieToDatabase(Movie movie);
 
+    public List<Movie> getCompiledFavorites();
 }

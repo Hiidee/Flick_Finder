@@ -25,7 +25,6 @@ export default new Vuex.Store({
     swipes: [],
     browse: [],
     counter: 0,
-    userProfile: {},
     showProfile: false
   },
 

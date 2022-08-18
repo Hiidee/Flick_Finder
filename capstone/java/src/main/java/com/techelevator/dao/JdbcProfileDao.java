@@ -44,7 +44,6 @@ public class JdbcProfileDao implements ProfileDao{
             if(rowSet.next()){
                 profile=mapRowToProfile(rowSet);
                 profile.setFavoriteGenres(getGenreForProfile(userId));
-                profile.setFavoriteMovies(getMovieForProfile(userId));
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -61,6 +60,21 @@ public class JdbcProfileDao implements ProfileDao{
         }catch (Exception e){
             e.printStackTrace();
             successful=false;
+        }
+
+        String genreSql = "SELECT genre_id FROM genre WHERE genre_name = ?;";
+
+        for(String genre: profile.getFavoriteGenres()) {
+            try {
+                SqlRowSet genreRowSet = jdbcTemplate.queryForRowSet(genreSql, genre);
+                while (genreRowSet.next()) {
+                    int genreId = genreRowSet.getInt("genre_id");
+                    String insertGenre = "INSERT INTO favorite_genre (genre_id,user_id) values (?,?);";
+                    jdbcTemplate.update(insertGenre, genreId,profile.getUser_id());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return successful;
     }
