@@ -433,8 +433,6 @@ public class JdbcMovieDao implements MovieDao {
                 movie = mapRowToMovie(rowset);
                 setMovieActors(movie);
                 setMovieGenre(movie);
-                //mapRowToActor(movie,rowset);
-                //mapRowToGenre(movie,rowset);
             }
         } catch (Exception e) {
             e.printStackTrace();

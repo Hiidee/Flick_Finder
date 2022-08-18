@@ -103,6 +103,12 @@ public class MovieController<list> {
         return dao.getCompiledFavorites();
     }
 
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Movie getMovieById(@PathVariable int id) {
+        return dao.getMovieById(id);
+    }
+
+
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
 //    public Movie get(@PathVariable int id) {
 //        return dao.get(id);
