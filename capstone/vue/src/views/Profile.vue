@@ -1,5 +1,5 @@
-<template>
-  <body>
+<template id="profile-template">
+  <body id="profile-body">
     <div class = "profile-page">
       <div>
         <i class="fa-solid fa-pen-to-square fa-2x" id="edit-profile" @click="flipStatus"></i>
@@ -36,9 +36,16 @@ export default {
 </script>
 
 <style>
+#profile-body{
+  margin-bottom: 150px;
+  background-color: white;
+  height: 100vh
+}
+
+
 .profile-page{
   justify-items: center;
-  background-color: whitesmoke;
+  background-color: white;
   height: 100vh;
 }
 

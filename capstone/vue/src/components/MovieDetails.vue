@@ -107,39 +107,10 @@ export default {
     }
   },
   created() {
-    // let movie = this.$store.state.browse.find((m) => {
-    //     return m.id == this.$route.params.id;
-    //   });
-    //   if(movie==undefined){
-    //     movie = this.$store.state.favorites.find((m)=> {
-    //       return m.id == this.$route.params.id;
-    //     })
-    //   }
       MovieService.listById(this.$route.params.id).then((response) => {
-        // this.localMovie.id = response.data.id
-        // this.localMovie.title = response.data.title
-        // this.localMovie.overview = response.data.overview
-        // this.localMovie.genre = response.data.genre
-        // this.localMovie.poster = response.data.poster
-        // this.localMovie.director = response.data.director
         this.localMovie = response.data
-      }); 
-      
+      });   
   },
-  // computed: {
-  //   getMovie() {
-  //     let movie = this.$store.state.browse.find((m) => {
-  //       return m.id == this.$route.params.id;
-  //     });
-  //     if(movie==undefined){
-  //       movie = this.$store.state.favorites.find((m)=> {
-  //         return m.id == this.$route.params.id;
-  //       })
-  //     }
-
-  //     return movie;
-  //   },
-  // },
 };
 </script>
 
