@@ -78,7 +78,7 @@ strong {
 }
 div.favorites-container {
   background-color: #333;
-  overflow: auto;
+  overflow-x: auto;
   white-space: nowrap;
   max-width: 70%;
 }
@@ -91,6 +91,9 @@ div.favorites-container a {
 }
 div.favorites-container a:hover {
   background-color: #777;
+}
+div.favorites-container::-webkit-scrollbar {
+    display: none;
 }
 .container {
   opacity: 2;
