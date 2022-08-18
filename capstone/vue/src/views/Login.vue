@@ -80,6 +80,11 @@ export default {
 </script>
 
 <style scoped>
+
+#login {
+  background-image: url("https://www.towerunite.com/images/community/devlog/020619/Lobby3_1.png");
+}
+
 .form-signin {
   padding: 50px;
   height: 100vh;
