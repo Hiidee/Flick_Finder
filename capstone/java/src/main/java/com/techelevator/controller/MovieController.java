@@ -14,9 +14,9 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 @RequestMapping("/movies")
-public class MovieController {
+public class MovieController<list> {
 
     private MovieDao dao;
 
@@ -98,10 +98,15 @@ public class MovieController {
         return dao.addMovieToDatabase(movie);
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Movie getMovieById(@PathVariable int id) {
-        return dao.getMovieById(id);
+    @RequestMapping(path = "/compiled", method = RequestMethod.GET)
+    public List<Movie> displayAllFavorites(){
+        return dao.getCompiledFavorites();
     }
+
+//    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+//    public Movie get(@PathVariable int id) {
+//        return dao.get(id);
+//    }
 //
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @ResponseStatus(HttpStatus.CREATED)

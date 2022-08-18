@@ -28,6 +28,8 @@ public interface MovieDao {
     public boolean addFavoriteMovies(int userId, List<Movie> favorited);
 
     public List<Movie> getFavoriteMovie (int id);
+
     public boolean addMovieToDatabase(Movie movie);
 
+    public List<Movie> getCompiledFavorites();
 }

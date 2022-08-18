@@ -264,6 +264,28 @@ public class JdbcMovieDao implements MovieDao {
 
     /////////////ALGORITHM HELPERS////////////////
 
+    public List<Movie> getCompiledFavorites(){
+        List<Movie> movies = new ArrayList<>();
+
+        String sql = "SELECT length_minutes, overview, movie_id, title, release_date, poster_path, person_name as director FROM movie JOIN person on director_id = person_id WHERE movie_id in\n" +
+                "(SELECT movie_id FROM movie_favorite GROUP BY (movie_id) ORDER BY count(movie_id) DESC LIMIT 10);";
+
+        try{
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+            while(rowSet.next()){
+                Movie movie = mapRowToMovie(rowSet);
+                setMovieGenre(movie);
+                setMovieActors(movie);
+
+                movies.add(movie);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return movies;
+    }
+
     public List<Movie> getMovieByActor(String actor) {
 
         List<Movie> movies = new ArrayList<>();
