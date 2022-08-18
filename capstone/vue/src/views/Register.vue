@@ -70,7 +70,6 @@ export default {
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
-                
               });
             }
           })

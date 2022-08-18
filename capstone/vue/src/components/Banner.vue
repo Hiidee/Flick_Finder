@@ -87,7 +87,7 @@ export default {
 
 }
 
-.banner-button::before {
+/* .banner-button::before {
   content: "";
   position: absolute;
   background: var(--clr-neon);
@@ -100,7 +100,7 @@ export default {
   filter: blur(1em);
   opacity: 0.7;
 
-}
+} */
 
 #nav {
   background-color: rgb(37, 37, 110);
