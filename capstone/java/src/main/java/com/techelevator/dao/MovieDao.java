@@ -5,6 +5,7 @@ import com.techelevator.model.Movie;
 import java.util.List;
 
 public interface MovieDao {
+    public Movie getMovieById(int id);
 
     public List<Movie> getRandomMovie(int limit);
 

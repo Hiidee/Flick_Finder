@@ -98,10 +98,10 @@ public class MovieController {
         return dao.addMovieToDatabase(movie);
     }
 
-//    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-//    public Movie get(@PathVariable int id) {
-//        return dao.get(id);
-//    }
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Movie getMovieById(@PathVariable int id) {
+        return dao.getMovieById(id);
+    }
 //
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @ResponseStatus(HttpStatus.CREATED)

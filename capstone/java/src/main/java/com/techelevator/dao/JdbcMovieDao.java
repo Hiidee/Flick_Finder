@@ -399,6 +399,28 @@ public class JdbcMovieDao implements MovieDao {
         return movie;
     }
 
+    public Movie getMovieById(int id) {
+        Movie movie = new Movie();
+        String sql = "SELECT length_minutes, overview, movie_id, title, release_date, poster_path, person_name as director FROM movie\n" +
+                "JOIN person ON director_id = person_id\n" +
+                "WHERE movie_id = ?;";
+
+        try{
+            SqlRowSet rowset = jdbcTemplate.queryForRowSet(sql, id);
+            if(rowset.next()) {
+                movie = mapRowToMovie(rowset);
+                setMovieActors(movie);
+                setMovieGenre(movie);
+                //mapRowToActor(movie,rowset);
+                //mapRowToGenre(movie,rowset);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movie;
+
+    }
+
     public Movie setMovieActors(Movie movie) {
 
         String sql = "SELECT person_name as actor FROM movie\n" +

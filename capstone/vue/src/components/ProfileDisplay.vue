@@ -19,7 +19,7 @@
       
   </div>
 
-    <h2>Favorite Movies: </h2>
+    <h2 id="favorite-movies">Favorite Movies: </h2>
   <div class="favorite-movies">
          <div
         class="browse-card"
@@ -89,6 +89,7 @@ export default {
     
 }
 
+#favorite-movies,
 #username, 
 #first-name, 
 #last-name, 
