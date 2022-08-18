@@ -3,9 +3,9 @@
 
   <div class="personal-info">
       <p id="username">Username: {{$store.state.user.username}}</p>
-      <p id="first-name">First Name: {{$store.state.userProfile.firstName}}</p>
-      <p id="last-name">Last Name: {{$store.state.userProfile.lastName}}</p>
-      <p id="email-address">Email Address: {{$store.state.userProfile.emailAddress}}</p>
+      <p id="first-name">First Name: {{localProfile.firstName}}</p>
+      <p id="last-name">Last Name: {{localProfile.lastName}}</p>
+      <p id="email-address">Email Address: {{localProfile.emailAddress}}</p>
   </div>
     
   <div class="favorite-genre">
@@ -47,7 +47,14 @@ export default {
     name: 'profile-display',
     data() {
         return {
-            localFavorites: []
+            localFavorites: [],
+            localProfile: {
+              firstName: "",
+              lastName: "",
+              emailAddress: "",
+              favoriteGenres: [],
+            }
+
             
         }
 
@@ -56,16 +63,20 @@ export default {
     created() {
         MovieService.listFavorites(this.$store.state.user.id).then( (response) => {
       response.data.forEach(movie => { 
-        // this.$store.commit("ADD_FAVORITE_MOVIE", movie);
-        // this.profile.favorites.push(movie.title)
         this.localFavorites.push(movie)
       });
       ProfileService.profile(this.$store.state.user.id).then((response)=>{
         this.$store.commit("SAVE_PROFILE", response.data)
       })
+      ProfileService.profile(this.$store.state.user.id).then((response) => {
+          this.localProfile.firstName = response.data.firstName;
+          this.localProfile.lastName = response.data.lastName;
+          this.localProfile.emailAddress = response.data.emailAddress;
+        })
     });
     
-    }
+    },
+
 }
 </script>
 
