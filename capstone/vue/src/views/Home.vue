@@ -1,8 +1,14 @@
 <template>
   <body>
     <div class="home">
+      <div class = "wheel-container">
+         <h2 class="favorites-wheel title is-3" for="favorites-container">Top 10 Favorited Movies: </h2>
+          <div class="favorites-container">
+            <a class = "movie-container" v-for="movie in homeMovies" v-bind:key="movie.id"><img class= "home-poster" v-bind:src="movie.poster"/></a>
+          </div>
+      </div>
       <div id="about" class="container">
-        <h1>About Flick Finder:</h1>
+        <h1 class = "home-header title is-3">About Flick Finder:</h1>
         <div>
           <br />
           <br />
@@ -14,6 +20,7 @@
             through the whole list again is too time consuming. Don't you wish
             there was a way to flag multiple movies, and based on those
             selections, get recommendations?
+          </p>
             <br />
             <br />
             <strong>Now there is!</strong>
@@ -29,22 +36,6 @@
             <strong>It's like Tinder... For movies!</strong>
             <br />
             <br />
-          </p>
-          <div class="favorites-container">
-            <a href="#movie1">Movie 1</a>
-            <a href="#movie2">Movie 2</a>
-            <a href="#movie3">Movie 3</a>
-            <a href="#movie4">Movie 4</a>
-            <a href="#movie5">Movie 5</a>
-            <a href="#movie6">Movie 6</a>
-            <a href="#movie7">Movie 7</a>
-            <a href="#movie8">Movie 8</a>
-            <a href="#movie9">Movie 9</a>
-            <a href="#movie10">Movie 10</a>
-            <a href="#movie11">Movie 11</a>
-            <a href="#movie12">Movie 12</a>
-            <a href="#movie13">Movie 13</a>
-          </div>
         </div>
       </div>
     </div>
@@ -54,12 +45,20 @@
 <script>
 import MovieService from "@/services/MovieService.js";
 export default {
+  data(){
+    return{
+      homeMovies:[],
+    }
+  },
   name: "home",
 
   created() {
     MovieService.listRandom().then((response) => {
       this.$store.state.browse = response.data;
     });
+    MovieService.displayHomeMovies().then((response)=>{
+      this.homeMovies = response.data;
+    })
   },
 };
 </script>
@@ -98,8 +97,30 @@ div.favorites-container::-webkit-scrollbar {
 .container {
   opacity: 2;
 }
-.home {
-  display: flex;
-  height: 100vh;
+
+.home-header{
+  color:rgb(54, 155, 223);
 }
+
+.home {
+  height: 120vh;
+}
+.home-poster{
+  height : 35vh;
+}
+
+.favorites-wheel{
+  
+  color:white;
+  margin-top:10vh;
+  margin-right:auto;
+  margin-left:70vh;
+  width:50%;
+}
+
+.favorites-container{
+  margin:auto;
+  width: 50;
+}
+
 </style>
