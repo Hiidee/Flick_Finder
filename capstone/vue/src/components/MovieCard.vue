@@ -265,7 +265,7 @@ export default {
 
 /* CSS */
 .button-85 {
-  padding: 0.6em 2em;
+  padding: 0.4em 2em;
   border: none;
   outline: none;
   color: rgb(255, 255, 255);
@@ -283,6 +283,9 @@ export default {
   margin-top:10vh;
   margin-bottom:10vh;
   font-size: 500%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 .button-85:before {
   content: "";
