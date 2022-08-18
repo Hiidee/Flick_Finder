@@ -250,14 +250,15 @@ export default {
 .review-container{
   display:flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-content: center;
   margin-left:10px;
 }
 
 .review{
   display:flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .favorite-button {
@@ -283,7 +284,7 @@ export default {
 
 .img-buttons {
   justify-content: center;
-  width: 100vh;
+  width: 90vh;
 }
 
 .center-poster {
