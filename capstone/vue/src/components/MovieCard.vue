@@ -66,6 +66,9 @@
         <div class="overview">
           <p id="overview-header" class="title is-4">Overview:</p>
           <p class="overview-item subtitle is-6">{{ movie.overview }}</p>
+           <div class = "review container" v-for="review in ratings" v-bind:key ="review.Source">
+        <p>{{review.Source}}: {{review.Value}}</p>
+      </div>
 
           <div class="favorite-button">
             <i
@@ -82,6 +85,7 @@
 
 <script>
 import MovieService from "@/services/MovieService.js";
+import OMDBService from "@/services/OMDBService.js";
 
 export default {
   name: "movie-card",
@@ -100,11 +104,16 @@ export default {
         actors: [],
       },
       i: 0,
+      ratings:[],
     };
   },
   computed: {},
   created() {
     this.movie = this.$store.state.recommendations[this.i];
+    OMDBService.getRatings(this.movie.title).then((response) => {
+        console.log(response.data);
+        this.ratings = response.data.Ratings;
+      });
   },
   methods: {
     likeMovie() {

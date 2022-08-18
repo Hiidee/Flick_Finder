@@ -1,5 +1,5 @@
 <template>
-  <div class = "footer">
+  <div class="footer">
     <p class="footer-info">woooooooords 2022</p>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   bottom: auto;
   width: 100%;
   height: 2.5rem;
-  }
+}
 .footer-info {
   text-align: center;
   color: rgb(173, 186, 187);
