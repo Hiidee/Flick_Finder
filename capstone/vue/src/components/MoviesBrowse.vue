@@ -1,7 +1,7 @@
 <template>
   <div class="browse">
     <div class="searchbar">
-      <label for="search">Filter Movies: </label>
+      <label for="search">Search Movies: </label>
       <input class="search" type="text" v-model="filter" />
     </div>
 
@@ -166,11 +166,15 @@ export default {
 }
 
 .searchbar{
-  color:red;
+  color:darkblue;
   margin:5vh;
-  background: white;
+  background: darkgrey;
   border-radius:5px;
   padding:10px;
+}
+
+.addMovieForm{
+  
 }
 
 </style>

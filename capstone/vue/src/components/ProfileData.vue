@@ -215,6 +215,7 @@ export default {
 
   methods: {
     saveProfile() {
+      this.profile.user_id = this.$store.state.user.id;
       ProfileService.updateProfile(this.profile);
       this.profile = {};
       this.$store.commit('FLIP_PROFILE_STATUS')
